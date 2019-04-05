@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="ADE Commands"><meta name="keywords" content="ADE,Linux"><meta name="author" content="Xin Zheng"><meta name="copyright" content="Xin Zheng"><title>ADE Commands | Xin's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常用的ADE-Commands"><span class="toc-number">1.</span> <span class="toc-text">常用的ADE Commands:</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Xin Zheng</div><div class="author-info__description text-center">Practice makes perfect.</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">16</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">8</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">7</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xin's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/about">About</a></span></div><div id="post-info"><div id="post-title">ADE Commands</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-03</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Oracle-tools/">Oracle tools</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h4 id="常用的ADE-Commands"><a href="#常用的ADE-Commands" class="headerlink" title="常用的ADE Commands:"></a>常用的ADE Commands:</h4><pre><code>* cd $ADE_VIEW_NAME
+* cd $ADE_VIEW_ROOT
+* ade okinit
+* setenv ADE_SITE ade_fusion_slc
+* ade createview -series &lt;Series Name&gt; (-label &lt;label name&gt; or -latest) &lt;view name/workspace name on local&gt;    -------&gt; Create workspace and checkout
+* ade createview scm_orchinfra_view -series FUSIONAPPS_PT.INTSCMC_LINUX.X64 -latest 
+* ade useview &lt;view name&gt;   -------&gt;Start using the view/workspace
+*     jdev &amp;  -------&gt;open Jdeveloper with the view created in step 2. we need to import the code manually.
+* ade begintrans &lt;bug number&gt; -no_restore -------&gt;/ create trans file on the view. It will take time so we will start jdev.
+* ade ci &lt;filename&gt;
+* ade ci -all or ade ciall -------&gt;to checkin all files
+* 
+
+* ade begintrans ranathi_scmc_trnx -------&gt; Begins transaction
+* ade savetrans &lt;trans_name&gt; -------&gt;/ after this others can view the trans file.
+* ade describetrans &lt;trans_name&gt; -------&gt; it will tell how many files we changed .
+* ade renametrans -bug &lt;bug number&gt;   ------&gt; change bug number
+* ade destroytrans -force &lt;trans_name&gt; -------&gt;local changes will be destroyed and trans file will be deleted.
+* ade tkreview &lt;trans_name&gt; -------&gt;To see a particular transaction for changes
+* ade tkreview -view  -------&gt;To see a particular transaction along with the file that are not checked-in.
+* ade tkvtree &lt;file&gt;
+* ade lsco
+* ade unco &lt;filename&gt;  / ade unco -all -------&gt;the changes will be unbranched  from trans file, but changes will be still there on our local. To branch again change the file again and it will be associated to transaction.
+* ade fetchtrans(get saved trans) /grabtrans(get ci transactions) &lt;trans_name&gt; -------&gt; to merge other person trans file to our local.
+* ade grabtrans &lt;trans_name&gt;
+* ade sharetrans &lt;trans_name&gt;
+ade unbranch &lt;fullpath&gt;    ------&gt; rollback the checkin, or cancel the checked in files from txn
+* ade showseries | grep SCMC  -------&gt; Shows all serires
+
+* ade lsviews -------&gt; To view all our views
+*     vncconfig &amp;  -------&gt; To copy from windows to VM
+* ade lshistory &lt;filename&gt; |grep Merges  ------&gt; To get History of file
+* ade showlabels -series FUSIONAPPS_11.1.1.5.1_LINUX.X64 ------&gt;  Shows all labels in a series
+* ade exec /usr/local/nde/ade/util/adhoc_query_scripts/list_merges_to_branch.pl -p FUSIONAPPS -b st_fusionapps_11.1.1.5.1 -d 30 -sort_by  // Get transactions of past 30 days
+* ade mkelem &lt;file-name&gt; ----&gt; To add file to branch
+* ade rm &lt;file-name&gt;
+* ade pwv          ------&gt; Display info for the named view; defaults to the current view
+* ade pwd          ------&gt; displays view-relative path, otherwise displays absolute path.
+* ade destroyview &lt;view name&gt;
+</code></pre></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Xin Zheng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/04/03/ADE-Commands/">http://yoursite.com/2019/04/03/ADE-Commands/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ADE/">ADE</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/03/ERP缩写释义/"><i class="fa fa-chevron-left">  </i><span>ERP缩写释义</span></a></div><div class="next-post pull-right"><a href="/2019/04/02/Java-容器/"><span> Java 集合 - Collection</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Xin Zheng</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>
