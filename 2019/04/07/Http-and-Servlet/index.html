@@ -7,9 +7,7 @@
     error: 'Copy error',
     noSupport: 'The browser does not support'
   }
-} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Xin Zheng</div><div class="author-info__description text-center">Practice makes perfect.</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">19</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">10</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">11</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xin's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/about">About</a></span></div><div id="post-info"><div id="post-title">Http and Servlet</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-07</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java-Web/">Java Web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>#Http协议&amp;Servlet</p>
-<p>#Http协议</p>
-<ul>
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Http协议-amp-Servlet"><span class="toc-number">1.</span> <span class="toc-text">Http协议&amp;Servlet</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Http协议"><span class="toc-number">2.</span> <span class="toc-text">Http协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#演示客户端-如何-与服务器端通讯。"><span class="toc-number">2.0.1.</span> <span class="toc-text">演示客户端 如何 与服务器端通讯。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http请求数据解释"><span class="toc-number">2.0.2.</span> <span class="toc-text">Http请求数据解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http响应数据解析"><span class="toc-number">2.0.3.</span> <span class="toc-text">Http响应数据解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-和-Post请求区别"><span class="toc-number">2.1.</span> <span class="toc-text">Get 和  Post请求区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web资源"><span class="toc-number">2.1.1.</span> <span class="toc-text">Web资源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet"><span class="toc-number">2.2.</span> <span class="toc-text">Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello-Servlet"><span class="toc-number">2.2.1.</span> <span class="toc-text">Hello Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet的通用写法"><span class="toc-number">2.2.2.</span> <span class="toc-text">Servlet的通用写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet的生命周期"><span class="toc-number">2.3.</span> <span class="toc-text">Servlet的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#让Servlet创建实例的时机-提前。"><span class="toc-number">2.3.1.</span> <span class="toc-text">让Servlet创建实例的时机 提前。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ServletConfig"><span class="toc-number">2.4.</span> <span class="toc-text">ServletConfig</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么需要有这个ServletConfig"><span class="toc-number">2.4.1.</span> <span class="toc-text">为什么需要有这个ServletConfig</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">2.5.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Xin Zheng</div><div class="author-info__description text-center">Practice makes perfect.</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">19</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">10</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">7</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xin's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/about">About</a></span></div><div id="post-info"><div id="post-title">Http and Servlet</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-07</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java-Web/">Java Web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="Http协议-amp-Servlet"><a href="#Http协议-amp-Servlet" class="headerlink" title="Http协议&amp;Servlet"></a>Http协议&amp;Servlet</h1><h1 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h1><ul>
 <li>什么是协议</li>
 </ul>
 <blockquote>
@@ -29,8 +27,7 @@
 <pre><code>请求数据，服务器返回后， 连接还会保持着。 除非服务器 | 客户端 关掉。 有一定的时间限制，如果都空着这个连接，那么后面会自己断掉。
 </code></pre></li>
 </ul>
-<p>###演示客户端 如何 与服务器端通讯。</p>
-<blockquote>
+<h3 id="演示客户端-如何-与服务器端通讯。"><a href="#演示客户端-如何-与服务器端通讯。" class="headerlink" title="演示客户端 如何 与服务器端通讯。"></a>演示客户端 如何 与服务器端通讯。</h3><blockquote>
 <p>在地址栏中键入网络地址 回车  或者是平常注册的时候，点击了注册按钮 ， 浏览器都能显示出来一些东西。那么背地里到底浏览器和服务器是怎么通讯。 它们都传输了哪些数据。</p>
 </blockquote>
 <ol>
@@ -44,8 +41,7 @@
 <blockquote>
 <p>6.x 和 7.x 的文档页面有所不同，但是只要找到example就能够找到例子工程</p>
 </blockquote>
-<p>###Http请求数据解释 </p>
-<blockquote>
+<h3 id="Http请求数据解释"><a href="#Http请求数据解释" class="headerlink" title="Http请求数据解释"></a>Http请求数据解释</h3><blockquote>
 <p>请求的数据里面包含三个部分内容 ： 请求行 、 请求头 、请求体</p>
 </blockquote>
 <ul>
@@ -91,8 +87,7 @@ Cache-Control ： 对缓存的操作
 <pre><code>发送的数据呈现的是key=value ,如果存在多个数据，那么使用 &amp;
 
 firstname=zhang&amp;lastname=sansan
-</code></pre><p>###Http响应数据解析</p>
-<blockquote>
+</code></pre><h3 id="Http响应数据解析"><a href="#Http响应数据解析" class="headerlink" title="Http响应数据解析"></a>Http响应数据解析</h3><blockquote>
 <p>请求的数据里面包含三个部分内容 ： 响应行 、 响应头 、响应体</p>
 </blockquote>
 <pre><code>HTTP/1.1 200 OK
@@ -132,8 +127,7 @@ Content-Length ： 返回的数据长度
 Date ： 通讯的日期，响应的时间        
 </code></pre></li>
 </ul>
-<p>##Get 和  Post请求区别</p>
-<ul>
+<h2 id="Get-和-Post请求区别"><a href="#Get-和-Post请求区别" class="headerlink" title="Get 和  Post请求区别"></a>Get 和  Post请求区别</h2><ul>
 <li><p>post</p>
 <pre><code>1. 数据是以流的方式写过去，不会在地址栏上面显示。  现在一般提交数据到服务器使用的都是POST
 
@@ -145,8 +139,7 @@ Date ： 通讯的日期，响应的时间
 2. 能够带的数据有限， 1kb大小
 </code></pre></li>
 </ul>
-<p>###Web资源</p>
-<p>在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。 </p>
+<h3 id="Web资源"><a href="#Web资源" class="headerlink" title="Web资源"></a>Web资源</h3><p>在http协议当中，规定了请求和响应双方， 客户端和服务器端。与web相关的资源。 </p>
 <p>有两种分类</p>
 <ul>
 <li><p>静态资源</p>
@@ -156,8 +149,7 @@ Date ： 通讯的日期，响应的时间
 <p>  servlet/jsp</p>
 </li>
 </ul>
-<p>##Servlet</p>
-<ul>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><ul>
 <li>servlet是什么?</li>
 </ul>
 <blockquote>
@@ -166,8 +158,7 @@ Date ： 通讯的日期，响应的时间
 <blockquote>
 <p>更多的是配合动态资源来做。 当然静态资源也需要使用到servlet，只不过是Tomcat里面已经定义好了一个 DefaultServlet</p>
 </blockquote>
-<p>###Hello Servlet</p>
-<ol>
+<h3 id="Hello-Servlet"><a href="#Hello-Servlet" class="headerlink" title="Hello Servlet"></a>Hello Servlet</h3><ol>
 <li><p>得写一个Web工程 ， 要有一个服务器。</p>
 </li>
 <li><p>测试运行Web工程</p>
@@ -191,8 +182,7 @@ Date ： 通讯的日期，响应的时间
   &lt;/servlet-mapping&gt;
 
 3. 在地址栏上输入 http://localhost:8080/项目名称/a
-</code></pre><p>###Servlet的通用写法</p>
-<pre><code>Servlet (接口)
+</code></pre><h3 id="Servlet的通用写法"><a href="#Servlet的通用写法" class="headerlink" title="Servlet的通用写法"></a>Servlet的通用写法</h3><pre><code>Servlet (接口)
     |
     |
 GenericServlet
@@ -202,8 +192,7 @@ HttpServlet （用于处理http的请求）
 </code></pre><ol>
 <li>定义一个类，继承HttpServlet 复写doGet 和 doPost</li>
 </ol>
-<p>##Servlet的生命周期</p>
-<ul>
+<h2 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h2><ul>
 <li>生命周期</li>
 </ul>
 <blockquote>
@@ -235,8 +224,7 @@ HttpServlet （用于处理http的请求）
 </code></pre><blockquote>
 <p>doGet 和 doPost不算生命周期方法，所谓的生命周期方法是指，从对象的创建到销毁一定会执行的方法， 但是这两个方法，不一定会执行。</p>
 </blockquote>
-<p>###让Servlet创建实例的时机 提前。</p>
-<ol>
+<h3 id="让Servlet创建实例的时机-提前。"><a href="#让Servlet创建实例的时机-提前。" class="headerlink" title="让Servlet创建实例的时机 提前。"></a>让Servlet创建实例的时机 提前。</h3><ol>
 <li><p>默认情况下，只有在初次访问servlet的时候，才会执行init方法。 有的时候，我们可能需要在这个方法里面执行一些初始化工作，甚至是做一些比较耗时的逻辑。 </p>
 </li>
 <li><p>那么这个时候，初次访问，可能会在init方法中逗留太久的时间。 那么有没有方法可以让这个初始化的时机提前一点。 </p>
@@ -249,8 +237,7 @@ HttpServlet （用于处理http的请求）
       &lt;servlet-class&gt;com.itheima.servlet.HelloServlet04&lt;/servlet-class&gt;
       &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
   &lt;/servlet&gt;
-</code></pre><p>##ServletConfig</p>
-<blockquote>
+</code></pre><h2 id="ServletConfig"><a href="#ServletConfig" class="headerlink" title="ServletConfig"></a>ServletConfig</h2><blockquote>
 <p>Servlet的配置，通过这个对象，可以获取servlet在配置的时候一些信息</p>
 </blockquote>
 <blockquote>
@@ -278,8 +265,7 @@ while (names.hasMoreElements()) {
     System.out.println(&quot;key===&quot;+key + &quot;   value=&quot;+value);
 
 }
-</code></pre><p>###为什么需要有这个ServletConfig</p>
-<ol>
+</code></pre><h3 id="为什么需要有这个ServletConfig"><a href="#为什么需要有这个ServletConfig" class="headerlink" title="为什么需要有这个ServletConfig"></a>为什么需要有这个ServletConfig</h3><ol>
 <li><p>未来我们自己开发的一些应用，使用到了一些技术，或者一些代码，我们不会。 但是有人写出来了。它的代码放置在了自己的servlet类里面。 </p>
 </li>
 <li><p>刚好这个servlet 里面需要一个数字或者叫做变量值。 但是这个值不能是固定了。 所以要求使用到这个servlet的公司，在注册servlet的时候，必须要在web.xml里面，声明init-params</p>
@@ -287,8 +273,7 @@ while (names.hasMoreElements()) {
 </ol>
 <p>在开发当中比较少用。</p>
 <p>刚才的这个实验， 希望基础好或者感兴趣的同学，回去自己做一下。</p>
-<p>##总结</p>
-<ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li><p>Http协议</p>
 <pre><code>1. 使用HttpWacht 抓包看一看http请求背后的细节。 
 
