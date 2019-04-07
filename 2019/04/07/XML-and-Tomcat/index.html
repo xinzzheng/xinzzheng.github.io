@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="XML and Tomcat"><meta name="keywords" content="java web"><meta name="author" content="Xin Zheng"><meta name="copyright" content="Xin Zheng"><title>XML and Tomcat | Xin's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Xin Zheng</div><div class="author-info__description text-center">Practice makes perfect.</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">19</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">10</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">11</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xin's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/about">About</a></span></div><div id="post-info"><div id="post-title">XML and Tomcat</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-07</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java-web/">Java web</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>#Xml &amp; Tomcat</p>
+<p>##Xml</p>
+<blockquote>
+<p>eXtendsible  markup language  可扩展的标记语言</p>
+</blockquote>
+<p>###XML 有什么用?</p>
+<ol>
+<li><p>可以用来保存数据</p>
+</li>
+<li><p>可以用来做配置文件</p>
+</li>
+<li><p>数据传输载体</p>
+</li>
+</ol>
+<p><img src="/2019/04/07/XML-and-Tomcat/document.png" alt="icon"></p>
+<p>##定义xml</p>
+<blockquote>
+<p>其实就是一个文件，文件的后缀为 .xml</p>
+</blockquote>
+<p>###. 文档声明</p>
+<pre><code>简单声明， version : 解析这个xml的时候，使用什么版本的解析器解析
+&lt;?xml version=&quot;1.0&quot; ?&gt;
+
+encoding : 解析xml中的文字的时候，使用什么编码来翻译
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;gbk&quot; ?&gt;
+
+standalone  : no - 该文档会依赖关联其他文档 ，  yes-- 这是一个独立的文档
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;gbk&quot; standalone=&quot;no&quot; ?&gt;
+</code></pre><p>###encoding详解</p>
+<blockquote>
+<p>在解析这个xml的时候，使用什么编码去解析。   —解码。 </p>
+</blockquote>
+<pre><code>文字， 而是存储这些文字对应的二进制 。 那么这些文字对应的二进制到底是多少呢？ 根据文件使用的编码 来得到。 
+</code></pre><blockquote>
+<p>默认文件保存的时候，使用的是GBK的编码保存。 </p>
+</blockquote>
+<p>所以要想让我们的xml能够正常的显示中文，有两种解决办法</p>
+<ol>
+<li><p>让encoding也是GBK 或者 gb2312 . </p>
+</li>
+<li><p>如果encoding是 utf-8 ， 那么保存文件的时候也必须使用utf-8</p>
+</li>
+<li><p>保存的时候见到的ANSI 对应的其实是我们的本地编码 GBK。</p>
+</li>
+</ol>
+<p>为了通用，建议使用UTF-8编码保存，以及encoding 都是 utf-8</p>
+<p>###元素定义（标签）</p>
+<ol>
+<li><p>其实就是里面的标签， &lt;&gt; 括起来的都叫元素 。 成对出现。  如下： </p>
+<pre><code>&lt;stu&gt; &lt;/stu&gt;
+</code></pre></li>
+<li><p>文档声明下来的第一个元素叫做根元素 (根标签)</p>
+</li>
+<li><p>标签里面可以嵌套标签</p>
+</li>
+<li><p>空标签</p>
+<pre><code>既是开始也是结束。 一般配合属性来用。
+
+&lt;age/&gt;
+</code></pre></li>
+</ol>
+<pre><code>&lt;stu&gt;
+    &lt;name&gt;张三&lt;/name&gt;
+    &lt;age/&gt;
+&lt;/stu&gt;
+</code></pre><ol start="5">
+<li><p>标签可以自定义。 </p>
+<p>XML 命名规则</p>
+<pre><code>XML 元素必须遵循以下命名规则：
+
+名称可以含字母、数字以及其他的字符 
+名称不能以数字或者标点符号开始 
+名称不能以字符 “xml”（或者 XML、Xml）开始 
+名称不能包含空格 
+</code></pre></li>
+</ol>
+<pre><code>命名尽量简单，做到见名知义
+</code></pre><p>###简单元素  &amp; 复杂元素 </p>
+<ul>
+<li>简单元素 </li>
+</ul>
+<blockquote>
+<p>元素里面包含了普通的文字</p>
+</blockquote>
+<ul>
+<li>复杂元素</li>
+</ul>
+<blockquote>
+<p>元素里面还可以嵌套其他的元素</p>
+</blockquote>
+<p>###属性的定义</p>
+<blockquote>
+<p>定义在元素里面， &lt;元素名称  属性名称=”属性的值”&gt;&lt;/元素名称&gt;<br>        <stus><br>            <stu id="10086"><br>                <name>张三</name><br>                <age>18</age><br>            </stu><br>            <stu id="10087"><br>                <name>李四</name><br>                <age>28</age><br>            </stu><br>        </stus></p>
+</blockquote>
+<p>##xml注释：</p>
+<blockquote>
+<p>与html的注释一样。 </p>
+</blockquote>
+<pre><code>&lt;!-- --&gt; 
+如： 
+
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;!-- 
+        //这里有两个学生
+        //一个学生，名字叫张三， 年龄18岁， 学号：10086
+        //另外一个学生叫李四  。。。
+     --&gt;
+</code></pre><blockquote>
+<p>xml的注释，不允许放置在文档的第一行。 必须在文档声明的下面。</p>
+</blockquote>
+<p>##CDATA区</p>
+<ul>
+<li><p>非法字符</p>
+<p>严格地讲，在 XML 中仅有字符 “&lt;”和”&amp;” 是非法的。省略号、引号和大于号是合法的，但是把它们替换为实体引用是个好的习惯。 </p>
+<p>&lt;   &lt;<br>&amp;   &amp;</p>
+</li>
+</ul>
+<p>如果某段字符串里面有过多的字符， 并且里面包含了类似标签或者关键字的这种文字，不想让xml的解析器去解析。 那么可以使用CDATA来包装。  不过这个CDATA 一般比较少看到。 通常在服务器给客户端返回数据的时候。</p>
+<pre><code>&lt;des&gt;&lt;![CDATA[&lt;a href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;]]&gt;&lt;/des&gt;
+</code></pre><p>##XML 解析</p>
+<blockquote>
+<p>其实就是获取元素里面的字符数据或者属性数据。</p>
+</blockquote>
+<p>###XML解析方式(面试常问)</p>
+<blockquote>
+<p>有很多种，但是常用的有两种。</p>
+</blockquote>
+<ul>
+<li><p>DOM</p>
+</li>
+<li><p>SAX</p>
+</li>
+</ul>
+<p><img src="/2019/04/07/XML-and-Tomcat/parse_type.png" alt="icon"></p>
+<p>###针对这两种解析方式的API</p>
+<blockquote>
+<p>一些组织或者公司， 针对以上两种解析方式， 给出的解决方案有哪些？</p>
+</blockquote>
+<pre><code>jaxp  sun公司。 比较繁琐
+
+jdom
+dom4j  使用比较广泛
+</code></pre><p>###Dom4j 基本用法</p>
+<pre><code>element.element(&quot;stu&quot;) : 返回该元素下的第一个stu元素
+element.elements(); 返回该元素下的所有子元素。 
+</code></pre><ol>
+<li><p>创建SaxReader对象</p>
+</li>
+<li><p>指定解析的xml</p>
+</li>
+<li><p>获取根元素。</p>
+</li>
+<li><p>根据根元素获取子元素或者下面的子孙元素</p>
+</li>
+</ol>
+<pre><code>try {
+    //1. 创建sax读取对象
+    SAXReader reader = new SAXReader(); //jdbc -- classloader
+    //2. 指定解析的xml源
+    Document  document  = reader.read(new File(&quot;src/xml/stus.xml&quot;));
+
+    //3. 得到元素、
+    //得到根元素
+    Element rootElement= document.getRootElement();
+
+    //获取根元素下面的子元素 age
+//rootElement.element(&quot;age&quot;) 
+    //System.out.println(rootElement.element(&quot;stu&quot;).element(&quot;age&quot;).getText());
+
+
+    //获取根元素下面的所有子元素 。 stu元素
+    List&lt;Element&gt; elements = rootElement.elements();
+    //遍历所有的stu元素
+    for (Element element : elements) {
+        //获取stu元素下面的name元素
+        String name = element.element(&quot;name&quot;).getText();
+        String age = element.element(&quot;age&quot;).getText();
+        String address = element.element(&quot;address&quot;).getText();
+        System.out.println(&quot;name=&quot;+name+&quot;==age+&quot;+age+&quot;==address=&quot;+address);
+    }
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
+</code></pre><p>SaxReader 创建好对象 。  </p>
+<p>Document<br>Element</p>
+<ol>
+<li><p>看文档</p>
+</li>
+<li><p>记住关键字 。</p>
+</li>
+<li><p>有对象先点一下。</p>
+</li>
+<li><p>看一下方法的返回值。 </p>
+</li>
+<li><p>根据平时的积累。  getXXX setXXX </p>
+</li>
+</ol>
+<p>###Dom4j 的 Xpath使用</p>
+<blockquote>
+<p> dom4j里面支持Xpath的写法。 xpath其实是xml的路径语言，支持我们在解析xml的时候，能够快速的定位到具体的某一个元素。</p>
+</blockquote>
+<ol>
+<li><p>添加jar包依赖 </p>
+<p>jaxen-1.1-beta-6.jar</p>
+</li>
+<li><p>在查找指定节点的时候，根据XPath语法规则来查找</p>
+</li>
+<li><p>后续的代码与以前的解析代码一样。</p>
+</li>
+</ol>
+<pre><code>//要想使用Xpath， 还得添加支持的jar 获取的是第一个 只返回一个。 
+Element nameElement = (Element) rootElement.selectSingleNode(&quot;//name&quot;);
+System.out.println(nameElement.getText());
+
+
+System.out.println(&quot;----------------&quot;);
+
+//获取文档里面的所有name元素 
+List&lt;Element&gt; list = rootElement.selectNodes(&quot;//name&quot;);
+for (Element element : list) {
+    System.out.println(element.getText());
+}
+</code></pre><p>##XML 约束【了解】</p>
+<p>如下的文档， 属性的ID值是一样的。 这在生活中是不可能出现的。 并且第二个学生的姓名有好几个。 一般也很少。那么怎么规定ID的值唯一， 或者是元素只能出现一次，不能出现多次？ 甚至是规定里面只能出现具体的元素名字。 </p>
+<pre><code>&lt;stus&gt;
+    &lt;stu id=&quot;10086&quot;&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;18&lt;/age&gt;
+        &lt;address&gt;深圳&lt;/address&gt;
+    &lt;/stu&gt;
+    &lt;stu id=&quot;10086&quot;&gt;
+        &lt;name&gt;李四&lt;/name&gt;
+        &lt;name&gt;李五&lt;/name&gt;
+        &lt;name&gt;李六&lt;/name&gt;
+        &lt;age&gt;28&lt;/age&gt;
+        &lt;address&gt;北京&lt;/address&gt;
+    &lt;/stu&gt;
+&lt;/stus&gt;
+</code></pre><p>###DTD</p>
+<pre><code>语法自成一派， 早起就出现的。 可读性比较差。 
+</code></pre><ol>
+<li><p>引入网络上的DTD</p>
+<pre><code>&lt;!-- 引入dtd 来约束这个xml --&gt;
+
+&lt;!--    文档类型  根标签名字 网络上的dtd   dtd的名称   dtd的路径
+&lt;!DOCTYPE stus PUBLIC &quot;//UNKNOWN/&quot; &quot;unknown.dtd&quot;&gt; --&gt;
+</code></pre><ol start="2">
+<li><p>引入本地的DTD</p>
+<!-- 引入本地的DTD  ： 根标签名字 引入本地的DTD  dtd的位置 -->
+<!-- <!DOCTYPE stus SYSTEM "stus.dtd"> -->
+</li>
+</ol>
+</li>
+<li><p>直接在XML里面嵌入DTD的约束规则</p>
+<pre><code>&lt;!-- xml文档里面直接嵌入DTD的约束法则 --&gt;
+&lt;!DOCTYPE stus [
+    &lt;!ELEMENT stus (stu)&gt;
+    &lt;!ELEMENT stu (name,age)&gt;
+    &lt;!ELEMENT name (#PCDATA)&gt;
+    &lt;!ELEMENT age (#PCDATA)&gt;
+]&gt;
+
+&lt;stus&gt;
+    &lt;stu&gt;
+        &lt;name&gt;张三&lt;/name&gt;
+        &lt;age&gt;18&lt;/age&gt;
+    &lt;/stu&gt;
+&lt;/stus&gt;
+</code></pre></li>
+</ol>
+<pre><code>&lt;!ELEMENT stus (stu)&gt;  : stus 下面有一个元素 stu  ， 但是只有一个
+&lt;!ELEMENT stu (name , age)&gt;  stu下面有两个元素 name  ,age  顺序必须name-age
+&lt;!ELEMENT name (#PCDATA)&gt; 
+&lt;!ELEMENT age (#PCDATA)&gt;
+&lt;!ATTLIST stu id CDATA #IMPLIED&gt; stu有一个属性 文本类型， 该属性可有可无
+
+
+元素的个数：
+
+    ＋　一个或多个
+    *  零个或多个
+    ? 零个或一个
+
+属性的类型定义 
+
+    CDATA : 属性是普通文字
+    ID : 属性的值必须唯一
+
+
+&lt;!ELEMENT stu (name , age)&gt;        按照顺序来 
+
+&lt;!ELEMENT stu (name | age)&gt;   两个中只能包含一个子元素
+</code></pre><p>###Schema</p>
+<pre><code>其实就是一个xml ， 使用xml的语法规则， xml解析器解析起来比较方便 ， 是为了替代DTD 。
+但是Schema 约束文本内容比DTD的内容还要多。 所以目前也没有真正意义上的替代DTD
+
+
+约束文档：
+    &lt;!-- xmlns  :  xml namespace : 名称空间 /  命名空间
+    targetNamespace :  目标名称空间 。 下面定义的那些元素都与这个名称空间绑定上。 
+    elementFormDefault ： 元素的格式化情况。  --&gt;
+    &lt;schema xmlns=&quot;http://www.w3.org/2001/XMLSchema&quot; 
+        targetNamespace=&quot;http://www.itheima.com/teacher&quot; 
+        elementFormDefault=&quot;qualified&quot;&gt;
+
+        &lt;element name=&quot;teachers&quot;&gt;
+            &lt;complexType&gt;
+                &lt;sequence maxOccurs=&quot;unbounded&quot;&gt;
+                    &lt;!-- 这是一个复杂元素 --&gt;
+                    &lt;element name=&quot;teacher&quot;&gt;
+                        &lt;complexType&gt;
+                            &lt;sequence&gt;
+                                &lt;!-- 以下两个是简单元素 --&gt;
+                                &lt;element name=&quot;name&quot; type=&quot;string&quot;&gt;&lt;/element&gt;
+                                &lt;element name=&quot;age&quot; type=&quot;int&quot;&gt;&lt;/element&gt;
+                            &lt;/sequence&gt;
+                        &lt;/complexType&gt;
+                    &lt;/element&gt;
+                &lt;/sequence&gt;
+            &lt;/complexType&gt;
+        &lt;/element&gt;
+    &lt;/schema&gt;
+
+实例文档：
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;!-- xmlns:xsi : 这里必须是这样的写法，也就是这个值已经固定了。
+    xmlns : 这里是名称空间，也固定了，写的是schema里面的顶部目标名称空间
+    xsi:schemaLocation : 有两段： 前半段是名称空间，也是目标空间的值 ， 后面是约束文档的路径。
+     --&gt;
+    &lt;teachers
+        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xmlns=&quot;http://www.itheima.com/teacher&quot;
+        xsi:schemaLocation=&quot;http://www.itheima.com/teacher teacher.xsd&quot;
+    &gt;
+        &lt;teacher&gt;
+            &lt;name&gt;zhangsan&lt;/name&gt;
+            &lt;age&gt;19&lt;/age&gt;
+        &lt;/teacher&gt;
+        &lt;teacher&gt;
+            &lt;name&gt;lisi&lt;/name&gt;
+            &lt;age&gt;29&lt;/age&gt;
+        &lt;/teacher&gt;
+        &lt;teacher&gt;
+            &lt;name&gt;lisi&lt;/name&gt;
+            &lt;age&gt;29&lt;/age&gt;
+        &lt;/teacher&gt;
+    &lt;/teachers&gt;
+</code></pre><p>##名称空间的作用</p>
+<p>一个xml如果想指定它的约束规则， 假设使用的是DTD ，那么这个xml只能指定一个DTD  ，  不能指定多个DTD 。 但是如果一个xml的约束是定义在schema里面，并且是多个schema，那么是可以的。简单的说： 一个xml 可以引用多个schema约束。 但是只能引用一个DTD约束。</p>
+<p>名称空间的作用就是在 写元素的时候，可以指定该元素使用的是哪一套约束规则。  默认情况下 ，如果只有一套规则，那么都可以这么写</p>
+<pre><code>&lt;name&gt;张三&lt;/name&gt;
+
+&lt;aa:name&gt;&lt;/aa:name&gt;
+&lt;bb:name&gt;&lt;/bb:name&gt;
+</code></pre><p>###程序架构</p>
+<p>网页游戏</p>
+<ul>
+<li>C/S(client/server)</li>
+</ul>
+<blockquote>
+<p>QQ 微信 LOL</p>
+</blockquote>
+<p>优点：</p>
+<pre><code>有一部分代码写在客户端， 用户体验比较好。 
+</code></pre><p>缺点： </p>
+<pre><code>服务器更新，客户端也要随着更新。 占用资源大。 
+</code></pre><ul>
+<li>B/S(browser/server)</li>
+</ul>
+<blockquote>
+<p>网页游戏 ， WebQQ …</p>
+</blockquote>
+<p>优点： </p>
+<pre><code>客户端只要有浏览器就可以了。     占用资源小， 不用更新。 
+</code></pre><p>缺点：</p>
+<pre><code>用户体验不佳。 
+</code></pre><p>###服务器</p>
+<blockquote>
+<p>其实服务器就是一台电脑。 配置比一般的要好。</p>
+</blockquote>
+<p>###Web服务器软件 </p>
+<blockquote>
+<p>客户端在浏览器的地址栏上输入地址 ，然后web服务器软件，接收请求，然后响应消息。<br>处理客户端的请求， 返回资源 | 信息</p>
+</blockquote>
+<p> Web应用  需要服务器支撑。 index.html</p>
+<pre><code>Tomcat  apache
+
+WebLogic BEA
+Websphere IBM  
+
+IIS   微软
+</code></pre><p>###Tomcat安装</p>
+<ol>
+<li><p>直接解压 ，然后找到bin/startup.bat</p>
+</li>
+<li><p>可以安装</p>
+</li>
+</ol>
+<p>启动之后，如果能够正常看到黑窗口，表明已经成功安装。 为了确保万无一失， 最好在浏览器的地址栏上输入 ： <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> , 如果有看到内容 就表明成功了。</p>
+<ol start="3">
+<li>如果双击了startup.bat,  看到一闪而过的情形，一般都是 JDK的环境变量没有配置。 </li>
+</ol>
+<p>###Tomcat目录介绍</p>
+<p>bin##</p>
+<pre><code>&gt; 包含了一些jar ,  bat文件 。  startup.bat
+</code></pre><p>conf##<br>​<br>        tomcat的配置     server.xml  web.xml</p>
+<p>lib </p>
+<pre><code>tomcat运行所需的jar文件
+</code></pre><p>logs</p>
+<pre><code>运行的日志文件
+</code></pre><p>temp</p>
+<pre><code>临时文件
+</code></pre><p>webapps##</p>
+<pre><code>发布到tomcat服务器上的项目，就存放在这个目录。    
+</code></pre><p>work(目前不用管)</p>
+<pre><code>jsp翻译成class文件存放地
+</code></pre><p>​    </p>
+<p>##如何把一个项目发布到tomcat中</p>
+<blockquote>
+<p>需求： 如何能让其他的电脑访问我这台电脑上的资源 。 stu.xml</p>
+</blockquote>
+<pre><code>localhost : 本机地址
+</code></pre><p>###1.  拷贝这个文件到webapps/ROOT底下， 在浏览器里面访问：</p>
+<pre><code>    http://localhost:8080/stu.xml
+
+* 在webaps下面新建一个文件夹xml  , 然后拷贝文件放置到这个文件夹中
+</code></pre><p>​<br>        <a href="http://localhost:8080/xml/stu.xml" target="_blank" rel="noopener">http://localhost:8080/xml/stu.xml</a></p>
+<pre><code>http://localhost:8080 ： 其实对应的是到webapps/root
+http://localhost:8080/xml/ : 对应是 webapps/xml
+
+使用IP地址访问：
+
+http://192.168.37.48:8080/xml/stu.xml
+</code></pre><p>###2. 配置虚拟路径</p>
+<p>使用localhost：8080 打开tomcat首页， 在左侧找到tomcat的文档入口， 点击进去后， 在左侧接着找到 Context入口，点击进入。</p>
+<pre><code>http://localhost:8080/docs/config/context.html
+</code></pre><ol>
+<li><p>在conf/server.xml 找到host元素节点。</p>
+</li>
+<li><p>加入以下内容。</p>
+</li>
+</ol>
+<pre><code>&lt;!-- docBase ：  项目的路径地址 如： D:\xml02\person.xml
+path : 对应的虚拟路径 一定要以/打头。
+对应的访问方式为： http://localhost:8080/a/person.xml --&gt;
+&lt;Context docBase=&quot;D:\xml02&quot; path=&quot;/a&quot;&gt;&lt;/Context&gt;
+</code></pre><ol start="3">
+<li>在浏览器地址栏上输入： <a href="http://localhost:8080/a/person.xml" target="_blank" rel="noopener">http://localhost:8080/a/person.xml</a></li>
+</ol>
+<p>###3. 配置虚拟路径</p>
+<ol>
+<li><p>在tomcat/conf/catalina/localhost/ 文件夹下新建一个xml文件，名字可以自己定义。 person.xml</p>
+</li>
+<li><p>在这个文件里面写入以下内容</p>
+<pre><code>&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;
+&lt;Context docBase=&quot;D:\xml02&quot;&gt;&lt;/Context&gt;
+</code></pre></li>
+<li><p>在浏览器上面访问</p>
+<p><a href="http://localhost:8080/person/xml的名字即可" target="_blank" rel="noopener">http://localhost:8080/person/xml的名字即可</a></p>
+</li>
+</ol>
+<p>###给Eclipse配置Tomcat</p>
+<ol>
+<li>在server里面 右键新建一个服务器， 选择到apache分类， 找到对应的tomcat版本， 接着一步一步配置即可。</li>
+<li><p>配置完毕后， 在server 里面， 右键刚才的服务器，然后open  ， 找到上面的Server Location , 选择中间的 Use Tomcat installation…</p>
+</li>
+<li><p>创建web工程， 在WebContent下定义html文件， 右键工程， run as server </p>
+</li>
+</ol>
+<p>##总结：</p>
+<pre><code>xml
+
+    1. 会定义xml
+
+    2. 会解析xml
+
+        dom4j  基本解析
+
+        Xpath手法
+
+
+tomcat
+
+    1. 会安装 ，会启动 ， 会访问。
+
+    2. 会设置虚拟路径
+
+    3. 给eclipse配置tomcat
+</code></pre><p>​    </p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Xin Zheng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/04/07/XML-and-Tomcat/">http://yoursite.com/2019/04/07/XML-and-Tomcat/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java-web/">java web</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/07/Http-and-Servlet/"><i class="fa fa-chevron-left">  </i><span>Http and Servlet</span></a></div><div class="next-post pull-right"><a href="/2019/04/06/jsp中加入css样式/"><span>jsp中加入css和js</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Xin Zheng</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>
