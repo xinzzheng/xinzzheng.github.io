@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Git Command"><meta name="keywords" content="Git"><meta name="author" content="Xin Zheng"><meta name="copyright" content="Xin Zheng"><title>Git Command | Xin's Blog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用git命令"><span class="toc-number">1.</span> <span class="toc-text">常用git命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常规操作："><span class="toc-number">1.1.</span> <span class="toc-text">常规操作：</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">Xin Zheng</div><div class="author-info__description text-center">Practice makes perfect.</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">23</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">11</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">8</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xin's Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a><a class="site-page" href="/about">About</a></span></div><div id="post-info"><div id="post-title">Git Command</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-08</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Oracle-Tools/">Oracle Tools</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="常用git命令"><a href="#常用git命令" class="headerlink" title="常用git命令"></a>常用git命令</h2><h3 id="常规操作："><a href="#常规操作：" class="headerlink" title="常规操作："></a>常规操作：</h3><ul>
+<li><code>git clone &lt;地址&gt;</code></li>
+<li>新建本地分支 <code>git checkout -b &lt;开发分支&gt;</code></li>
+<li>更新远端分支 <code>git fetch</code></li>
+<li>拉取远端的更新 <code>git pull origin &lt;分支名&gt;</code></li>
+<li>切换本地分支 <code>git checkout &lt;分支名&gt;</code></li>
+<li>合并主分支到当前分支 <code>git merge master</code></li>
+<li>推送本地分支到远端 <code>git push origin &lt;开发分支&gt;</code></li>
+<li>查看本地分支 <code>git branch</code></li>
+<li><p>查看本地分支以及远端分支 <code>git branch -a</code></p>
+</li>
+<li><p><code>git config --global http.proxy http://cn-proxy.jp.oracle.com:80</code></p>
+</li>
+</ul>
+<ul>
+<li><p>创建本地跟踪分支 <code>git checkout -b branchname origin/branchname</code>  </p>
+</li>
+<li><p>删除本地分支 <code>git branch -D &lt;branch_name&gt;</code></p>
+</li>
+<li><p>重置工作区的一个文件到最近的一次提交 <code>git reset HEAD &lt;file&gt;</code></p>
+</li>
+<li><p>重置工作区的所有文件到最近的一次提交（注意最后的点） <code>git reset HEAD .</code></p>
+</li>
+<li><p>强制重置工作区的所有文件到最近的一次提交 <code>git reset --hard HEAD^</code><br><code>git checkout -- .</code><br><code>git push origin --delete &lt;branch_name&gt;</code><br><code>git push --force origin &lt;branch_name&gt;</code></p>
+</li>
+<li><p>恢复<br><code>git checkout origin/master -- ScoCore/ScoCore.jpr</code></p>
+</li>
+<li><p>删除远端分支 <code>git push origin --delete &lt;branch_name&gt;</code></p>
+</li>
+<li><p>强制更新远端分支 <code>git push --force origin &lt;branch_name&gt;</code></p>
+</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Xin Zheng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/04/08/Git-Command/">http://yoursite.com/2019/04/08/Git-Command/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Git/">Git</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/08/Cookie-and-Session/"><i class="fa fa-chevron-left">  </i><span>Cookie and Session</span></a></div><div class="next-post pull-right"><a href="/2019/04/08/Servlet页面跳转方法/"><span>Servlet页面跳转方法</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By Xin Zheng</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script></body></html>
