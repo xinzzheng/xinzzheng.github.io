@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: java | Xin&#39;s Blog</title>
+  <title>Tag: java | Xin Blog</title>
   
   
   <meta name="description" content="Practice makes perfect.">
@@ -102,7 +102,7 @@
 		<div class="nav-main container container--flex">
       <a class="logo flat-box" href="/">
         
-          Xin's Blog
+          Xin Blog
         
       </a>
 			<div class="menu navgation">
@@ -240,6 +240,110 @@
       
         
   <h2 class="title">
+    <a href="/2019/04/01/泛型/">
+      Java 泛型
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-01</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Java系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Java系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="通俗解释"><a href="#通俗解释" class="headerlink" title="通俗解释"></a>通俗解释</h3><p>　　通俗的讲，泛型就是操作类型的 占位符，即：假设占位符为 T，那么此次声明的数据结构操作的数据类型为T类型。<br>　　<br></p>
+      
+        <div class="readmore">
+          <a href="/2019/04/01/泛型/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/2019/04/01/反射/">
       Java 反射
     </a>
@@ -279,9 +383,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/Java-基础/" rel="nofollow">
+    <a href="/categories/Java系列/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Java 基础</p>
+      <p>Java系列</p>
     </a>
   </div>
 
@@ -308,47 +412,15 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h3 id="先看一个知乎回答"><a href="#先看一个知乎回答" class="headerlink" title="先看一个知乎回答"></a>先看一个知乎回答</h3><p>　　首先看一个在知乎上的优秀回答吧：</p>
-<p>　　反射是什么呢？当我们的程序在运行时，需要动态的加载一些类这些类可能之前用不到所以不用加载到 JVM，而是在运行时根据需要才加载，这样的好处对于服务器来说不言而喻。</p>
-<p>　　举个例子我们的项目底层有时是用 mysql，有时用 oracle，需要动态地根据实际情况加载驱动类，这个时候反射就有用了，假设 com.java.dbtest.myqlConnection，com.java.dbtest.oracleConnection 这两个类我们要用，这时候我们的程序就写得比较动态化，通过 Class tc = Class.forName(“com.java.dbtest.TestConnection”); 通过类的全类名让 JVM 在服务器中找到并加载这个类，而如果是 Oracle 则传入的参数就变成另一个了。这时候就可以看到反射的好处了，这个动态性就体现出 Java 的特性了！</p>
-<p>　　举多个例子，大家如果接触过 spring，会发现当你配置各种各样的 bean 时，是以配置文件的形式配置的，你需要用到哪些 bean 就配哪些，spring 容器就会根据你的需求去动态加载，你的程序就能健壮地运行。</p>
-<h3 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h3><p>　　反射 (Reflection) 是 Java 程序开发语言的特征之一，它允许运行中的 Java 程序获取自身的信息，并且可以操作类或对象的内部属性。通过 Class 获取 class 信息称之为反射（Reflection）</p>
-<p>　　简而言之，通过反射，我们可以在运行时获得程序或程序集中每一个类型的成员和成员的信息。</p>
-<p>　　程序中一般的对象的类型都是在编译期就确定下来的，而 Java 反射机制可以动态地创建对象并调用其属性，这样的对象的类型在编译期是未知的。所以我们可以通过反射机制直接创建对象，即使这个对象的类型在编译期是未知的。</p>
-<p>　　反射的核心是 JVM 在运行时才动态加载类或调用方法/访问属性，它不需要事先（写代码的时候或编译期）知道运行对象是谁。</p>
-<p>　　Java 反射框架主要提供以下功能：</p>
-<p>　　1. 在运行时判断任意一个对象所属的类</p>
-<p>　　2. 在运行时构造任意一个类的对象</p>
-<p>　　3. 在运行时判断任意一个类所具有的成员变量和方法（通过反射甚至可以调用 private 方法）</p>
-<p>　　4. 在运行时调用任意一个对象的方法</p>
-<p>　　<strong>重点</strong>：是运行时而不是编译时</p>
-<h3 id="主要用途"><a href="#主要用途" class="headerlink" title="主要用途"></a>主要用途</h3><p>　　很多人都认为反射在实际的 Java 开发应用中并不广泛，其实不然。</p>
-<p>当我们在使用 IDE （如Eclipse，IDEA）时，当我们输入一个对象或类并想调用它的属性或方法时，一按点号，编译器就会自动列出它的属性或方法，这里就会用到反射。</p>
-<p>　　<strong>反射最重要的用途就是开发各种通用框架</strong></p>
-<p>　　很多框架（比如 Spring ）都是配置化的（比如通过 XML 文件配置 JavaBean,Action 之类的），为了保证框架的通用性，它们可能需要根据配置文件加载不同的对象或类，调用不同的方法，这个时候就必须用到反射——运行时动态加载需要加载的对象。</p>
-<p>　　对与框架开发人员来说，反射虽小但作用非常大，它是各种容器实现的核心。而对于一般的开发者来说，不深入框架开发则用反射用的就会少一点，不过了解一下框架的底层机制有助于丰富自己的编程思想，也是很有益的。</p>
-<h3 id="获得Class对象"><a href="#获得Class对象" class="headerlink" title="获得Class对象"></a>获得Class对象</h3><ol>
-<li>调用运行时类本身的 <code>.class</code> 属性</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class clazz1 = Person.class;</span><br><span class="line">System.out.println(clazz1.getName());</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>通过运行时类的对象获取 <code>getClass();</code></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">Class clazz3 = p.getClass();</span><br><span class="line">System.out.println(clazz3.getName());</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>使用 Class 类的 <code>forName</code> 静态方法</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Class&lt;?&gt; forName(String className)</span><br><span class="line"><span class="comment">// 在JDBC开发中常用此方法加载数据库驱动:</span></span><br><span class="line">Class.forName(driver);</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>（了解）通过类的加载器 ClassLoader</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ClassLoader classLoader = <span class="keyword">this</span>.getClass().getClassLoader();</span><br><span class="line">Class clazz5 = classLoader.loadClass(className);</span><br><span class="line">System.out.println(clazz5.getName());</span><br></pre></td></tr></table></figure>
-<p>参考资料：</p>
-<ul>
-<li><a href="https://www.sczyh30.com/posts/Java/java-reflection-1/#%E4%B8%80%E3%80%81%E5%9B%9E%E9%A1%BE%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84%EF%BC%9F" target="_blank" rel="noopener">深入解析Java反射（1） - 基础 | 「浮生若梦」 - sczyh30’s blog</a></li>
-<li><a href="https://www.zhihu.com/question/24304289/answer/147529485" target="_blank" rel="noopener">学习java应该如何理解反射？ - 知乎</a></li>
-</ul>
-
+      <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<p>运行一个程序需要先将类加载到运行时数据区，同时会将类的结构信息保存到方法区中，同时会在堆区中创建一个特殊的对象，可以使用该对象操作方法区中类的信息，那么这个特殊的对象是什么类型呢？该对象Java提供了Class类型表示。其实每个类只要加载之后都会对应有自己的这个特特殊类对象，可以使用这个特殊类对象操作方法区中的类信息结构，这种方式就是反射机制。<br>　　<br></p></blockquote>
+      
+        <div class="readmore">
+          <a href="/2019/04/01/反射/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
     
@@ -416,9 +488,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/Java-基础/" rel="nofollow">
+    <a href="/categories/Java系列/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Java 基础</p>
+      <p>Java系列</p>
     </a>
   </div>
 
@@ -445,36 +517,14 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h3 id="Java程序初始化的顺序是怎么样的"><a href="#Java程序初始化的顺序是怎么样的" class="headerlink" title="Java程序初始化的顺序是怎么样的"></a>Java程序初始化的顺序是怎么样的</h3><p>　　在 Java 语言中，当实例化对象时，对象所在类的所有成员变量首先要进行初始化，只有当所有类成员完成初始化后，才会调用对象所在类的构造函数创建象。</p>
-<h4 id="初始化一般遵循3个原则："><a href="#初始化一般遵循3个原则：" class="headerlink" title="初始化一般遵循3个原则："></a>初始化一般遵循3个原则：</h4><ul>
-<li>静态对象（变量）优先于非静态对象（变量）初始化，静态对象（变量）只初始化一次，而非静态对象（变量）可能会初始化多次；</li>
-<li>父类优先于子类进行初始化；</li>
-<li>按照成员变量的定义顺序进行初始化。 即使变量定义散布于方法定义之中，它们依然在任何方法（包括构造函数）被调用之前先初始化；</li>
-</ul>
-<h4 id="加载顺序"><a href="#加载顺序" class="headerlink" title="加载顺序"></a>加载顺序</h4><ul>
-<li>父类（静态变量、静态语句块）</li>
-<li>子类（静态变量、静态语句块）</li>
-<li>父类（实例变量、普通语句块）</li>
-<li>父类（构造函数）</li>
-<li>子类（实例变量、普通语句块）</li>
-<li>子类（构造函数）</li>
-</ul>
-<h4 id="实例1"><a href="#实例1" class="headerlink" title="实例1"></a>实例1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1.父类静态代码块</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"Base static block!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 3.父类非静态代码块</span></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"Base block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 4.父类构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Base constructor!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 2.子类静态代码块</span></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Derived static block!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 5.子类非静态代码块</span></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"Derived block!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 6.子类构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Derived</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Derived constructor!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Derived();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Base static block!</span><br><span class="line">Derived static block!</span><br><span class="line">Base block</span><br><span class="line">Base constructor!</span><br><span class="line">Derived block!</span><br><span class="line">Derived constructor!</span><br></pre></td></tr></table></figure>
-<h4 id="实例2"><a href="#实例2" class="headerlink" title="实例2"></a>实例2</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Log</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> staitc String <span class="title">baseFieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"Base normal field"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> staitc String <span class="title">baseStaticFieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"Base static field"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> staitc String <span class="title">fieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"Normal field"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> staitc String <span class="title">staticFieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"Static field"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> &#123;System.out.println(<span class="string">"Base static block 1"</span>);&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String staticValue=Log.baseStaticFieldInit();</span><br><span class="line">	<span class="keyword">static</span> &#123;System.out.println(<span class="string">"Base static block 2"</span>);&#125;</span><br><span class="line">	&#123;System.out.println(<span class="string">"Base normal block 1"</span>);&#125;</span><br><span class="line">	<span class="keyword">private</span> String value=Log.baseFieldInit();</span><br><span class="line">	&#123;System.out.println(<span class="string">"Base normal block 2"</span>);&#125;</span><br><span class="line">	Base()&#123;</span><br><span class="line">		System.out.println(<span class="string">"Base constructor"</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> &#123;System.out.println(<span class="string">"Static block 1"</span>);&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String staticValue=Log.staticFieldInit();</span><br><span class="line">	<span class="keyword">static</span> &#123;System.out.println(<span class="string">"Static block 2"</span>);&#125;</span><br><span class="line">	&#123;System.out.println(<span class="string">"Normal block 1"</span>);&#125;</span><br><span class="line">	<span class="keyword">private</span> String value=Log.fieldInit();</span><br><span class="line">	&#123;System.out.println(<span class="string">"Normal block 2"</span>);&#125;</span><br><span class="line">	Derived() &#123;</span><br><span class="line">		System.out.println(<span class="string">"Dervied constructor"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	Derived d = <span class="keyword">new</span> Dervied();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Base static block 1</span><br><span class="line">Base static field</span><br><span class="line">Base static block 2</span><br><span class="line">Static block 1</span><br><span class="line">Static field</span><br><span class="line">Static block 2</span><br><span class="line">Base normal block 1</span><br><span class="line">Base normal field</span><br><span class="line">Base normal block 2</span><br><span class="line">Base constructor</span><br><span class="line">Normal block 1</span><br><span class="line">Normal field</span><br><span class="line">Normal block 2</span><br><span class="line">Dervied constructor</span><br></pre></td></tr></table></figure>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对象在class文件加载完毕，以及为各成员在方法区开辟好内存空间后，就开始所谓的初始化步骤：  </p>
-<ol>
-<li>基类静态代码块，基类静态成员字段，无优先级，按先后顺序，只有第一次加载类时执行。</li>
-<li>派生类静态代码块，派生类静态成员字段，无优先级，按先后顺序，只有第一次加载类时执行。</li>
-<li>基类普通代码块，基类普通成员字段，无优先级，按先后顺序。</li>
-<li>基类构造函数。</li>
-<li>派生类普通代码块，派生类普通成员字段，无优先级，按先后顺序。</li>
-<li>派生类构造函数。</li>
-</ol>
-<p><strong>1和2的静态过程，只有在类第一次被加载的时候才执行</strong><br>如果创建两个对象：<br>Dervied d1 = new Dervied();<br>Dervied d1 = new Dervied();<br>第二次创建只执行2345.</p>
-<h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p>[<a href="https://www.zhihu.com/question/49196023" target="_blank" rel="noopener">https://www.zhihu.com/question/49196023</a><br>] (<a href="https://www.zhihu.com/question/49196023" target="_blank" rel="noopener">https://www.zhihu.com/question/49196023</a>)<br><a href="https://github.com/frank-lam/fullstack-tutorial/blob/master/notes/JavaArchitecture/01-Java%E5%9F%BA%E7%A1%80.md" target="_blank" rel="noopener">https://github.com/frank-lam/fullstack-tutorial</a>  </p>
-
+      <h3 id="Java程序初始化的顺序是怎么样的"><a href="#Java程序初始化的顺序是怎么样的" class="headerlink" title="Java程序初始化的顺序是怎么样的"></a>Java程序初始化的顺序是怎么样的</h3><p>　　在 Java 语言中，当实例化对象时，对象所在类的所有成员变量首先要进行初始化，只有当所有类成员完成初始化后，才会调用对象所在类的构造函数创建象。<br>　　<br></p>
+      
+        <div class="readmore">
+          <a href="/2019/04/01/Java初始化顺序/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
     
@@ -656,21 +706,21 @@
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Java-Collections/" href="/categories/Java-Collections/"><div class="name">Java Collections</div><div class="badge">(2)</div></a></li>
-        
           <li><a class="flat-box" title="/categories/Java-Web/" href="/categories/Java-Web/"><div class="name">Java Web</div><div class="badge">(5)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java-基础/" href="/categories/Java-基础/"><div class="name">Java 基础</div><div class="badge">(8)</div></a></li>
-        
-          <li><a class="flat-box" title="/categories/Java-工具类/" href="/categories/Java-工具类/"><div class="name">Java 工具类</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(12)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring系列/" href="/categories/Spring系列/"><div class="name">Spring系列</div><div class="badge">(1)</div></a></li>
         
       </ul>
     </div>
@@ -695,7 +745,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/ADE/" style="font-size: 14px; color: #999">ADE</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 16.5px; color: #888">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/collection/" style="font-size: 16.5px; color: #888">collection</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 21.5px; color: #666">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 14px; color: #999">oracle</a> <a href="/tags/util/" style="font-size: 19px; color: #777">util</a>
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
     </div>
   </section>
 

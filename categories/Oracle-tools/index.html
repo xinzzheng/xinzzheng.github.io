@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Category: Oracle Tools | Xin&#39;s Blog</title>
+  <title>Category: Oracle Tools | Xin Blog</title>
   
   
   <meta name="description" content="Practice makes perfect.">
@@ -102,7 +102,7 @@
 		<div class="nav-main container container--flex">
       <a class="logo flat-box" href="/">
         
-          Xin's Blog
+          Xin Blog
         
       </a>
 			<div class="menu navgation">
@@ -318,39 +318,14 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h2 id="常用git命令"><a href="#常用git命令" class="headerlink" title="常用git命令"></a>常用git命令</h2><h3 id="常规操作："><a href="#常规操作：" class="headerlink" title="常规操作："></a>常规操作：</h3><ul>
-<li><code>git clone &lt;地址&gt;</code></li>
-<li>新建本地分支 <code>git checkout -b &lt;开发分支&gt;</code></li>
-<li>更新远端分支 <code>git fetch</code></li>
-<li>拉取远端的更新 <code>git pull origin &lt;分支名&gt;</code></li>
-<li>切换本地分支 <code>git checkout &lt;分支名&gt;</code></li>
-<li>合并主分支到当前分支 <code>git merge master</code></li>
-<li>推送本地分支到远端 <code>git push origin &lt;开发分支&gt;</code></li>
-<li>查看本地分支 <code>git branch</code></li>
-<li><p>查看本地分支以及远端分支 <code>git branch -a</code></p>
-</li>
-<li><p><code>git config --global http.proxy http://cn-proxy.jp.oracle.com:80</code></p>
-</li>
-</ul>
-<ul>
-<li><p>创建本地跟踪分支 <code>git checkout -b branchname origin/branchname</code>  </p>
-</li>
-<li><p>删除本地分支 <code>git branch -D &lt;branch_name&gt;</code></p>
-</li>
-<li><p>重置工作区的一个文件到最近的一次提交 <code>git reset HEAD &lt;file&gt;</code></p>
-</li>
-<li><p>重置工作区的所有文件到最近的一次提交（注意最后的点） <code>git reset HEAD .</code></p>
-</li>
-<li><p>强制重置工作区的所有文件到最近的一次提交 <code>git reset --hard HEAD^</code><br><code>git checkout -- .</code><br><code>git push origin --delete &lt;branch_name&gt;</code><br><code>git push --force origin &lt;branch_name&gt;</code></p>
-</li>
-<li><p>恢复<br><code>git checkout origin/master -- ScoCore/ScoCore.jpr</code></p>
-</li>
-<li><p>删除远端分支 <code>git push origin --delete &lt;branch_name&gt;</code></p>
-</li>
-<li><p>强制更新远端分支 <code>git push --force origin &lt;branch_name&gt;</code></p>
-</li>
-</ul>
-
+      <h2 id="常用git命令"><a href="#常用git命令" class="headerlink" title="常用git命令"></a>常用git命令</h2><h3 id="常规操作："><a href="#常规操作：" class="headerlink" title="常规操作："></a>常规操作：</h3>
+      
+        <div class="readmore">
+          <a href="/2019/04/08/Git-Command/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
     
@@ -447,42 +422,16 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h4 id="常用名词缩写"><a href="#常用名词缩写" class="headerlink" title="常用名词缩写"></a>常用名词缩写</h4><p>ATO = assemble to Order 按订单装配<br>PLM = Product Lifecycle Management<br>EDM = Engineering Data Mangement</p>
-<p>ASCP = Advanced Supply Chain Planning<br>HLS = High Level Scheduler<br>SCO = Supply Chain Optimizer<br>MBP = Memory Based Planner</p>
-<p>BOM =  Bill of Material 物料清单</p>
-<p>ODS = Operational Data Store<br>ADS = Applications Data Store<br>PDS = Planning Data Store</p>
-<p>MOS = My Oracle Support<br>TAR = Technical Assistance Request<br>SR = Support Request</p>
-<p>ARU = Automated Release Updates<br>KPIs = Key Performance Indicators<br>APS = Advanced Planning Suite</p>
-<p>WIP = work in process 半制品，在制品<br>ATO = assemble to Order 按订单装配<br>PTO = Pick to Order  按订单拣料</p>
-<p>PO = purchasing Order 采购订单<br>purchasing document = 采购单据<br>ASL = Approved Supplier List</p>
-<p>MDS = Master Demand Schedule 需求计划</p>
-<p>PTF = Planning Time Fence 计划时界<br>ASN = Advanced Shipment Notices<br>ASBN = Advanced Shipment Billing Notices</p>
-<p>The manufacturing and distribution plan types:<br>    MPP = Master Production Plans<br>    MPS = Master Production Schedules 主生产计划<br>    MRP = Material Requirements Plans 物料需求计划<br>    DRP = Distribution Plans</p>
-<p>PIP = Planned Inventory Points 计划库存点<br>UOM = Unit of measure 测量单位</p>
-<p>概念：</p>
-<p>Value Engineering = 工程经济学，最经济管理法<br>Procure to Pay = 采购到付款</p>
-<p>Blind Receipt = 盲接收（是指在“接收”窗口中不显示预计接收数量（数量全部为0），旨在要求接收人员清点接收行上的所有物料数量）<br>Cascade Receipt = 级联接收<br>Express Receipt = 快速接收<br>Substitute Receipt = 替代接收</p>
-<p>on-hand Qty = 现有量<br>Receiving  Transaction = 交付<br>Assignment Set = 分配集</p>
-<p>Purchase Order and Types：<br>    Blanket Purchase Agreement = BPA 一揽子采购协议是一种为降低采购成本,与供应商签订的中长期采购协议。一次签订,多次要货<br>    Contract Purchase Agreement 和约采购<br>    Planned Purchase Order<br>    Standard Purchase Order</p>
-<p>business group: 企业集团<br>Set of books: [财]成套账簿<br>accounting entity： 会计<br>legal entity: 法人<br>Operating unit： 经营机构;操作单位<br>inventory organization： 库存组织<br>Subinventory： 子库存<br>Inventory transactions： 库存模块； 存货处理； 存货交易<br>Time Fence 时界; 时间栏; 时间栅栏<br>Header Information: 标题信息<br>line Information: 相关信息？链接资讯</p>
-<p>Oracle Engineering BOM = 工程资料管理系统<br>Oracle Work in Process = 生管管理系统<br>Oracle Cost Management = 成本管理系统</p>
-<p>ATP = Available to Promise（有存货才保证）： 指基于预定义的现有与计划供给情况对交货做出承诺的能力。<br>CTP = Capable to Promise（有生产能力才保证）： 指确定部件物料和资源的可用性以满足非计划需求的附加能力。<br>CTD = Capable to Deliver （有交货能力）：指考虑转移提前期 以满足客户交货的需要。</p>
-<p>FOB = free on board 离岸价格； 船上交货； 离岸价； 目的地交货<br>Freight On Board (FOB)</p>
-<p>Shipping: 运输<br>sales order: 销售定单</p>
-<p>3 types of Sales Orders<br><strong>Standard (can only be used for ordering material)
-</strong>Mixed (Can be used for ordering material and also returning the material )<br>**Return (Can be used only for returning material)</p>
-<p>ORACLE：</p>
-<p>OBI = Oracle Base Image<br>OIM = Oracle Identify Management<br>MDM = Mobile Device Management<br>SSO = Single Sign On<br>OIM = Oracle Identity Management</p>
-<p>RDBMS = Relational Database Management System<br>ERP = Enterprise Resource Planning 企业资源计划系统<br>CRM  = Customer Relationship Management<br>BIS = Business Intelligent system</p>
-
+      <h4 id="常用名词缩写"><a href="#常用名词缩写" class="headerlink" title="常用名词缩写"></a>常用名词缩写</h4>
+      
+        <div class="readmore">
+          <a href="/2019/04/03/ERP缩写释义/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/oracle/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>oracle</a>
-        
-      </div>
     
   </section>
 </article>
@@ -571,52 +520,18 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h4 id="常用的ADE-Commands"><a href="#常用的ADE-Commands" class="headerlink" title="常用的ADE Commands:"></a>常用的ADE Commands:</h4><pre><code>* cd $ADE_VIEW_NAME
-* cd $ADE_VIEW_ROOT
-* ade okinit
-* setenv ADE_SITE ade_fusion_slc
-* ade createview -series &lt;Series Name&gt; (-label &lt;label name&gt; or -latest) &lt;view name/workspace name on local&gt;    -------&gt; Create workspace and checkout
-* ade createview scm_orchinfra_view -series FUSIONAPPS_PT.INTSCMC_LINUX.X64 -latest 
-* ade useview &lt;view name&gt;   -------&gt;Start using the view/workspace
-*     jdev &amp;  -------&gt;open Jdeveloper with the view created in step 2. we need to import the code manually.
-* ade begintrans &lt;bug number&gt; -no_restore -------&gt;/ create trans file on the view. It will take time so we will start jdev.
-* ade ci &lt;filename&gt;
-* ade ci -all or ade ciall -------&gt;to checkin all files
-* 
-
-* ade begintrans ranathi_scmc_trnx -------&gt; Begins transaction
-* ade savetrans &lt;trans_name&gt; -------&gt;/ after this others can view the trans file.
-* ade describetrans &lt;trans_name&gt; -------&gt; it will tell how many files we changed .
-* ade renametrans -bug &lt;bug number&gt;   ------&gt; change bug number
-* ade destroytrans -force &lt;trans_name&gt; -------&gt;local changes will be destroyed and trans file will be deleted.
-* ade tkreview &lt;trans_name&gt; -------&gt;To see a particular transaction for changes
-* ade tkreview -view  -------&gt;To see a particular transaction along with the file that are not checked-in.
-* ade tkvtree &lt;file&gt;
-* ade lsco
-* ade unco &lt;filename&gt;  / ade unco -all -------&gt;the changes will be unbranched  from trans file, but changes will be still there on our local. To branch again change the file again and it will be associated to transaction.
-* ade fetchtrans(get saved trans) /grabtrans(get ci transactions) &lt;trans_name&gt; -------&gt; to merge other person trans file to our local.
-* ade grabtrans &lt;trans_name&gt;
-* ade sharetrans &lt;trans_name&gt;
-ade unbranch &lt;fullpath&gt;    ------&gt; rollback the checkin, or cancel the checked in files from txn
-* ade showseries | grep SCMC  -------&gt; Shows all serires
-
-* ade lsviews -------&gt; To view all our views
-*     vncconfig &amp;  -------&gt; To copy from windows to VM
-* ade lshistory &lt;filename&gt; |grep Merges  ------&gt; To get History of file
-* ade showlabels -series FUSIONAPPS_11.1.1.5.1_LINUX.X64 ------&gt;  Shows all labels in a series
-* ade exec /usr/local/nde/ade/util/adhoc_query_scripts/list_merges_to_branch.pl -p FUSIONAPPS -b st_fusionapps_11.1.1.5.1 -d 30 -sort_by  // Get transactions of past 30 days
-* ade mkelem &lt;file-name&gt; ----&gt; To add file to branch
-* ade rm &lt;file-name&gt;
-* ade pwv          ------&gt; Display info for the named view; defaults to the current view
-* ade pwd          ------&gt; displays view-relative path, otherwise displays absolute path.
-* ade destroyview &lt;view name&gt;
-</code></pre>
+      <h4 id="常用的ADE-Commands"><a href="#常用的ADE-Commands" class="headerlink" title="常用的ADE Commands:"></a>常用的ADE Commands:</h4>
+      
+        <div class="readmore">
+          <a href="/2019/04/03/ADE-Commands/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
     
       <div class="full-width auto-padding tags">
-        
-          <a href="/tags/ADE/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>ADE</a>
         
           <a href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
         
@@ -777,21 +692,21 @@ ade unbranch &lt;fullpath&gt;    ------&gt; rollback the checkin, or cancel the 
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Java-Collections/" href="/categories/Java-Collections/"><div class="name">Java Collections</div><div class="badge">(2)</div></a></li>
-        
           <li><a class="flat-box" title="/categories/Java-Web/" href="/categories/Java-Web/"><div class="name">Java Web</div><div class="badge">(5)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java-基础/" href="/categories/Java-基础/"><div class="name">Java 基础</div><div class="badge">(8)</div></a></li>
-        
-          <li><a class="flat-box" title="/categories/Java-工具类/" href="/categories/Java-工具类/"><div class="name">Java 工具类</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(12)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring系列/" href="/categories/Spring系列/"><div class="name">Spring系列</div><div class="badge">(1)</div></a></li>
         
       </ul>
     </div>
@@ -816,7 +731,7 @@ ade unbranch &lt;fullpath&gt;    ------&gt; rollback the checkin, or cancel the 
 </header>
 
     <div class="content pure">
-      <a href="/tags/ADE/" style="font-size: 14px; color: #999">ADE</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 16.5px; color: #888">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/collection/" style="font-size: 16.5px; color: #888">collection</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 21.5px; color: #666">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 14px; color: #999">oracle</a> <a href="/tags/util/" style="font-size: 19px; color: #777">util</a>
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
     </div>
   </section>
 

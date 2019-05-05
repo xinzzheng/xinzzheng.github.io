@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Category: Java Collections | Xin&#39;s Blog</title>
+  <title>Category: Java Collections | Xin Blog</title>
   
   
   <meta name="description" content="Practice makes perfect.">
@@ -102,7 +102,7 @@
 		<div class="nav-main container container--flex">
       <a class="logo flat-box" href="/">
         
-          Xin's Blog
+          Xin Blog
         
       </a>
 			<div class="menu navgation">
@@ -324,74 +324,13 @@
 <li>Cloneable, </li>
 <li>java.io.Serializable  </li>
 </ol>
-<p>RandomAccess : 快速访问能力，以O(1)访问数组下标。</p>
-<p>占据一块连续的内存空间，空间效率不高，内存连续，读写效率高。</p>
-<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 保存ArrayList中数据的数组</span><br><span class="line">private transient Object[] elementData;</span><br><span class="line">// ArrayList中实际数据的数量</span><br><span class="line">private int size;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>elementData是个动态数组，我们能通过构造函数 ArrayList(int initialCapacity)来执行它的初始容量为initialCapacity；如果通过不含参数的构造函数ArrayList()来创建ArrayList，则elementData的容量默认是<strong>10</strong>。elementData数组的大小会根据ArrayList容量的增长而动态的增长，具体的增长方式，请参考源码分析中的ensureCapacity()函数。</li>
-<li>size 则是动态数组的实际大小。</li>
-</ol>
-<h5 id="ArrayList扩容原理"><a href="#ArrayList扩容原理" class="headerlink" title="ArrayList扩容原理"></a>ArrayList扩容原理</h5><p>源码中指定ArrayList的默认初始大小为10的数组，长度为10的Object数组很容易就装满了，如果增加的元素个数超过了10个，那么ArrayList底层会新生成一个数组，长度为原来数组的1.5倍+1，然后将原数组的内容复制到新数组中，并且后续增加的内容都会放到新数组当中，当新数组无法容纳增加的元素时，重复该过程。下图可以看到ArrayList扩容过程</p>
-<h4 id="ArrayList安全性"><a href="#ArrayList安全性" class="headerlink" title="ArrayList安全性"></a>ArrayList安全性</h4><p>因为ArrayList是线程不安全的，ArrayList的操作并非是原子性的，通读ArrayList代码并没有实现线程同步机制的加锁约束。ArrayList添加一个元素的时候，需要两个步骤：  </p>
-<ol>
-<li>Items[Size]的位置存放此元素。  </li>
-<li>增大Size的值。<br>在单线程运行的情况，这两个步骤是顺序执行的，互相不会影响。但是如果有两个线程去操作。  </li>
-<li>线程A在0的位置赋了一个值，然后停下来。  </li>
-<li>B线程ArrayList 0的位置又赋了一个值。<br>其实是重复在一个位置赋值，然后回到A线程，执行Size增加，也就是ArrayList的大小增加了，原来Size是1，现在变成2，然后停下来继续执行线程B，又增加了一个空间位置，size大小就变成了3，结果就是0的位置有值，1和2的索引位置都没有值实际大小是3，跟想要的结果0和1赋不同的值，结果不对。</li>
-</ol>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>借助 <strong>Collections.synchronizedList</strong>，可以把ArrayList转换为线程安全的List。</p>
-<p>与此类似的，还有HashSet,LinkedList,HashMap等等非线程安全的类，都通过工具类Collections转换为线程安全的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; list1 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; list2 = Collections.synchronizedList(list1);</span><br><span class="line">    &#125;</span><br><span class="line">       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>List&lt;Hero&gt; heros = (List&lt;Hero&gt;) Collections.synchronizedList(new LinkedList&lt;Hero&gt;());</code></p>
-<h4 id="ArrayList和LinkedList的区别"><a href="#ArrayList和LinkedList的区别" class="headerlink" title="ArrayList和LinkedList的区别"></a>ArrayList和LinkedList的区别</h4><ul>
-<li><ol>
-<li>是否保证线程安全： ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>底层数据结构： <ul>
-<li>Arraylist 底层使用的是Object数组；</li>
-<li>LinkedList 底层使用的是双向链表数据结构（JDK1.6之前为循环链表，JDK1.7取消了循环。注意双向链表和双向循环链表的区别：）； 详细可阅读JDK1.7-LinkedList循环链表优化</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>插入和删除是否受元素位置的影响： <ul>
-<li>3.1 ArrayList 采用数组存储，所以插入和删除元素的时间复杂度受元素位置的影响。 比如：执行add(E e) 方法的时候， ArrayList 会默认在将指定的元素追加到此列表的末尾，这种情况时间复杂度就是O(1)。但是如果要在指定位置 i 插入和删除元素的话（add(int index, E element) ）时间复杂度就为 O(n-i)。因为在进行上述操作的时候集合中第 i 和第 i 个元素之后的(n-i)个元素都要执行向后位/向前移一位的操作。 </li>
-<li>3.2 LinkedList 采用链表存储，所以插入，删除元素时间复杂度不受元素位置的影响，都是近似 O（1）而数组为近似 O（n）。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>是否支持快速随机访问： <ul>
-<li>LinkedList 不支持高效的随机元素访问，</li>
-<li>ArrayList 支持。快速随机访问就是通过元素的序号快速获取元素对象(对应于get(int index) 方法)。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>内存空间占用： <ul>
-<li>ArrayList的空 间浪费主要体现在在list列表的结尾会预留一定的容量空间.</li>
-<li>LinkedList的空间花费则体现在它的每一个元素都需要消耗比ArrayList更多的空间（因为要存放直接后继和直接前驱以及数据).</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<p>####ArrayList和Vector的区别</p>
-<ol>
-<li>Vector和ArrayList几乎是完全相同的,唯一的区别在于Vector是同步类(synchronized)，属于强同步类。因此开销就比ArrayList要大，访问要慢。正常情况下,大多数的Java程序员使用ArrayList而不是Vector,因为同步完全可以由程序员自己来控制。</li>
-<li>Vector每次扩容请求其大小的2倍空间，而ArrayList是1.5倍。</li>
-<li>Vector还有一个子类Stack.</li>
-</ol>
-<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><ol>
-<li></li>
-</ol>
-<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><p><a href="https://www.jianshu.com/p/2cd7be850540" target="_blank" rel="noopener">Java集合干货系列-（一）ArrayList源码解析</a><br><a href="https://www.jianshu.com/p/2c976be12c85" target="_blank" rel="noopener">Java集合中的ArrayList</a></p>
-
+      
+        <div class="readmore">
+          <a href="/2019/04/03/Java-Arraylist/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
     
@@ -490,7 +429,8 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <p><img src="/2019/04/02/Java-容器/collections.png" alt><br><img src="/2019/04/02/Java-容器/coll_mindmap.png" alt></p>
+      <a id="more"></a>
+<p><img src="/2019/04/02/Java-容器/collections.png" alt><br><img src="/2019/04/02/Java-容器/coll_mindmap.png" alt></p>
 <table align="center"><br><tr><td colspan="2" rowspan="2" align="center" border="0"></td><th colspan="5" align="center">Implementations</th></tr><tr><th>Hash Table</th><th>Resizable Array</th><th>Balanced Tree</th><th>Linked List</th><th>Hash Table + Linked List</th></tr><tr><th rowspan="4">Interfaces</th><th>Set</th><td><tt>HashSet</tt></td><td></td><td><tt>TreeSet</tt></td><td></td><td><tt>LinkedHashSet</tt></td></tr><tr><th>List</th><td></td><td><tt>ArrayList</tt></td><td></td><td><tt>LinkedList</tt></td><td></td></tr><tr><th>Deque</th><td></td><td><tt>ArrayDeque</tt></td><td></td><td><tt>LinkedList</tt></td><td></td></tr><tr><th>Map</th><td><tt>HashMap</tt></td><td></td><td><tt>TreeMap</tt></td><td></td><td><tt>LinkedHashMap</tt></td></tr></table>
 
 <h3 id="1-容器类接口和抽象容器类"><a href="#1-容器类接口和抽象容器类" class="headerlink" title="1.容器类接口和抽象容器类"></a>1.容器类接口和抽象容器类</h3><h4 id="1-1-说明"><a href="#1-1-说明" class="headerlink" title="1.1 说明"></a>1.1 说明</h4><p>　　容器接口是容器的基础。使用接口可以将容器的实现与容器接口分开，因而可以使用相同的方法访问容器而不需关心容器具体的数据结构。</p>
@@ -681,11 +621,15 @@
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-系列/" href="/categories/Spring-系列/"><div class="name">Spring 系列</div><div class="badge">(1)</div></a></li>
         
       </ul>
     </div>
@@ -710,7 +654,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/ADE/" style="font-size: 14px; color: #999">ADE</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 16.5px; color: #888">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/collection/" style="font-size: 16.5px; color: #888">collection</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 21.5px; color: #666">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 14px; color: #999">oracle</a> <a href="/tags/util/" style="font-size: 19px; color: #777">util</a>
+      <a href="/tags/ADE/" style="font-size: 14px; color: #999">ADE</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 22px; color: #636363">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 14px; color: #999">Spring Boot</a> <a href="/tags/collection/" style="font-size: 16px; color: #8b8b8b">collection</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20px; color: #707070">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 16px; color: #8b8b8b">linux</a> <a href="/tags/oracle/" style="font-size: 14px; color: #999">oracle</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a> <a href="/tags/util/" style="font-size: 18px; color: #7e7e7e">util</a>
     </div>
   </section>
 

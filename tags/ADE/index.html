@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: ADE | Xin&#39;s Blog</title>
+  <title>Tag: ADE | Xin Blog</title>
   
   
   <meta name="description" content="Practice makes perfect.">
@@ -102,7 +102,7 @@
 		<div class="nav-main container container--flex">
       <a class="logo flat-box" href="/">
         
-          Xin's Blog
+          Xin Blog
         
       </a>
 			<div class="menu navgation">
@@ -314,46 +314,14 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h4 id="常用的ADE-Commands"><a href="#常用的ADE-Commands" class="headerlink" title="常用的ADE Commands:"></a>常用的ADE Commands:</h4><pre><code>* cd $ADE_VIEW_NAME
-* cd $ADE_VIEW_ROOT
-* ade okinit
-* setenv ADE_SITE ade_fusion_slc
-* ade createview -series &lt;Series Name&gt; (-label &lt;label name&gt; or -latest) &lt;view name/workspace name on local&gt;    -------&gt; Create workspace and checkout
-* ade createview scm_orchinfra_view -series FUSIONAPPS_PT.INTSCMC_LINUX.X64 -latest 
-* ade useview &lt;view name&gt;   -------&gt;Start using the view/workspace
-*     jdev &amp;  -------&gt;open Jdeveloper with the view created in step 2. we need to import the code manually.
-* ade begintrans &lt;bug number&gt; -no_restore -------&gt;/ create trans file on the view. It will take time so we will start jdev.
-* ade ci &lt;filename&gt;
-* ade ci -all or ade ciall -------&gt;to checkin all files
-* 
-
-* ade begintrans ranathi_scmc_trnx -------&gt; Begins transaction
-* ade savetrans &lt;trans_name&gt; -------&gt;/ after this others can view the trans file.
-* ade describetrans &lt;trans_name&gt; -------&gt; it will tell how many files we changed .
-* ade renametrans -bug &lt;bug number&gt;   ------&gt; change bug number
-* ade destroytrans -force &lt;trans_name&gt; -------&gt;local changes will be destroyed and trans file will be deleted.
-* ade tkreview &lt;trans_name&gt; -------&gt;To see a particular transaction for changes
-* ade tkreview -view  -------&gt;To see a particular transaction along with the file that are not checked-in.
-* ade tkvtree &lt;file&gt;
-* ade lsco
-* ade unco &lt;filename&gt;  / ade unco -all -------&gt;the changes will be unbranched  from trans file, but changes will be still there on our local. To branch again change the file again and it will be associated to transaction.
-* ade fetchtrans(get saved trans) /grabtrans(get ci transactions) &lt;trans_name&gt; -------&gt; to merge other person trans file to our local.
-* ade grabtrans &lt;trans_name&gt;
-* ade sharetrans &lt;trans_name&gt;
-ade unbranch &lt;fullpath&gt;    ------&gt; rollback the checkin, or cancel the checked in files from txn
-* ade showseries | grep SCMC  -------&gt; Shows all serires
-
-* ade lsviews -------&gt; To view all our views
-*     vncconfig &amp;  -------&gt; To copy from windows to VM
-* ade lshistory &lt;filename&gt; |grep Merges  ------&gt; To get History of file
-* ade showlabels -series FUSIONAPPS_11.1.1.5.1_LINUX.X64 ------&gt;  Shows all labels in a series
-* ade exec /usr/local/nde/ade/util/adhoc_query_scripts/list_merges_to_branch.pl -p FUSIONAPPS -b st_fusionapps_11.1.1.5.1 -d 30 -sort_by  // Get transactions of past 30 days
-* ade mkelem &lt;file-name&gt; ----&gt; To add file to branch
-* ade rm &lt;file-name&gt;
-* ade pwv          ------&gt; Display info for the named view; defaults to the current view
-* ade pwd          ------&gt; displays view-relative path, otherwise displays absolute path.
-* ade destroyview &lt;view name&gt;
-</code></pre>
+      <h4 id="常用的ADE-Commands"><a href="#常用的ADE-Commands" class="headerlink" title="常用的ADE Commands:"></a>常用的ADE Commands:</h4>
+      
+        <div class="readmore">
+          <a href="/2019/04/03/ADE-Commands/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
     
@@ -529,11 +497,15 @@ ade unbranch &lt;fullpath&gt;    ------&gt; rollback the checkin, or cancel the 
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-系列/" href="/categories/Spring-系列/"><div class="name">Spring 系列</div><div class="badge">(1)</div></a></li>
         
       </ul>
     </div>
@@ -558,7 +530,7 @@ ade unbranch &lt;fullpath&gt;    ------&gt; rollback the checkin, or cancel the 
 </header>
 
     <div class="content pure">
-      <a href="/tags/ADE/" style="font-size: 14px; color: #999">ADE</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 16.5px; color: #888">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/collection/" style="font-size: 16.5px; color: #888">collection</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 21.5px; color: #666">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 14px; color: #999">oracle</a> <a href="/tags/util/" style="font-size: 19px; color: #777">util</a>
+      <a href="/tags/ADE/" style="font-size: 14px; color: #999">ADE</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 22px; color: #636363">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 14px; color: #999">Spring Boot</a> <a href="/tags/collection/" style="font-size: 16px; color: #8b8b8b">collection</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20px; color: #707070">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 16px; color: #8b8b8b">linux</a> <a href="/tags/oracle/" style="font-size: 14px; color: #999">oracle</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a> <a href="/tags/util/" style="font-size: 18px; color: #7e7e7e">util</a>
     </div>
   </section>
 

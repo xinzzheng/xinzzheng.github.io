@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: linux | Xin&#39;s Blog</title>
+  <title>Tag: linux | Xin Blog</title>
   
   
   <meta name="description" content="Practice makes perfect.">
@@ -102,7 +102,7 @@
 		<div class="nav-main container container--flex">
       <a class="logo flat-box" href="/">
         
-          Xin's Blog
+          Xin Blog
         
       </a>
 			<div class="menu navgation">
@@ -229,9 +229,117 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/04/26/解决Linux-macOS下zip文件解压中文乱码/">
+      解决Linux/macOS下zip文件解压中文乱码
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-26</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Mac系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Mac系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>很多网站下载的zip文件都是在Windows下打包的，这就为乱码的出现埋下了铺垫。这个问题表面上是由于Windows(中文系统)下使用cp936也就是GBK编码，而Linux以及macOS下使用UTF-8编码，但是追根究底还是因为zip格式在设计之初就没有为文件编码预留存储数据的位置，导致解压程序在解压时只能依照系统编码进行解压，这种情况下一旦跨平台解压就可能导致中文乱码。</p>
+      
+        <div class="readmore">
+          <a href="/2019/04/26/解决Linux-macOS下zip文件解压中文乱码/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Mac/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Mac</a>
+        
+          <a href="/tags/linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>linux</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class="post-wrapper">
@@ -314,15 +422,14 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">ls　　        显示文件或目录</span><br><span class="line"></span><br><span class="line">     -l           列出文件详细信息l(list)</span><br><span class="line"></span><br><span class="line">     -a          列出当前目录下所有文件及目录，包括隐藏的a(all)</span><br><span class="line"></span><br><span class="line">mkdir         创建目录</span><br><span class="line"></span><br><span class="line">     -p           创建目录，若无父目录，则创建p(parent)</span><br><span class="line"></span><br><span class="line">cd               切换目录</span><br><span class="line"></span><br><span class="line">touch          创建空文件</span><br><span class="line"></span><br><span class="line">echo            创建带有内容的文件。</span><br><span class="line"></span><br><span class="line">cat              查看文件内容</span><br><span class="line"></span><br><span class="line">cp                拷贝</span><br><span class="line"></span><br><span class="line">mv               移动或重命名</span><br><span class="line"></span><br><span class="line">rm               删除文件</span><br><span class="line"></span><br><span class="line">     -r            递归删除，可删除子目录及文件</span><br><span class="line"></span><br><span class="line">     -f            强制删除</span><br><span class="line"></span><br><span class="line">find              在文件系统中搜索某文件</span><br><span class="line"></span><br><span class="line">wc                统计文本中行数、字数、字符数</span><br><span class="line"></span><br><span class="line">grep             在文本文件中查找某个字符串</span><br><span class="line"></span><br><span class="line">rmdir           删除空目录</span><br><span class="line"></span><br><span class="line">tree             树形结构显示目录，需要安装tree包</span><br><span class="line"></span><br><span class="line">pwd              显示当前目录</span><br><span class="line"></span><br><span class="line">ln                  创建链接文件</span><br><span class="line"></span><br><span class="line">more、less  分页显示文本文件内容</span><br><span class="line"></span><br><span class="line">head、tail    显示文件头、尾内容</span><br></pre></td></tr></table></figure>
-<h4 id="压缩命令"><a href="#压缩命令" class="headerlink" title="压缩命令"></a>压缩命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bzip2：</span><br><span class="line"></span><br><span class="line">tar:                打包压缩</span><br><span class="line"></span><br><span class="line">     -c              归档文件</span><br><span class="line"></span><br><span class="line">     -x              压缩文件</span><br><span class="line"></span><br><span class="line">     -z              gzip压缩文件</span><br><span class="line"></span><br><span class="line">     -j              bzip2压缩文件</span><br><span class="line"></span><br><span class="line">     -v              显示压缩或解压缩过程 v(view)</span><br><span class="line"></span><br><span class="line">     -f              使用档名</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line"></span><br><span class="line">tar -cvf /home/abc.tar /home/abc              只打包，不压缩</span><br><span class="line"></span><br><span class="line">tar -zcvf /home/abc.tar.gz /home/abc        打包，并用gzip压缩</span><br><span class="line"></span><br><span class="line">tar -jcvf /home/abc.tar.bz2 /home/abc      打包，并用bzip2压缩</span><br><span class="line"></span><br><span class="line">当然，如果想解压缩，就直接替换上面的命令  tar -cvf  / tar -zcvf  / tar -jcvf 中的“</span><br></pre></td></tr></table></figure>
-<h4 id="Vim使用"><a href="#Vim使用" class="headerlink" title="Vim使用"></a>Vim使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">vim三种模式：命令模式、插入模式、编辑模式。使用ESC或i或：来切换模式。</span><br><span class="line"></span><br><span class="line">命令模式下：</span><br><span class="line"></span><br><span class="line">:q                      退出</span><br><span class="line"></span><br><span class="line">:q!                     强制退出</span><br><span class="line"></span><br><span class="line">:wq                   保存并退出</span><br><span class="line"></span><br><span class="line">:set number     显示行号</span><br><span class="line"></span><br><span class="line">:set nonumber  隐藏行号</span><br><span class="line"></span><br><span class="line">/apache            在文档中查找apache 按n跳到下一个，shift+n上一个</span><br><span class="line"></span><br><span class="line">插入模式下：</span><br><span class="line"></span><br><span class="line">100 dd  删除100行</span><br><span class="line"></span><br><span class="line">10 yy  p 复制10行 p 粘贴</span><br><span class="line"></span><br><span class="line">h 左移一个字符</span><br><span class="line"></span><br><span class="line">k 上移一个字符</span><br><span class="line"></span><br><span class="line">j 下移一个字符</span><br><span class="line"></span><br><span class="line">w 向前移动一个单词（光标停在单词首部），如果已到行尾，则转至下一行行首。此命令快，可以代替l命令。</span><br><span class="line"></span><br><span class="line">b 向后移动一个单词 2b 向后移动2个单词</span><br><span class="line"></span><br><span class="line">e，同w，只不过是光标停在单词尾部</span><br><span class="line"></span><br><span class="line">ge，同b，光标停在单词尾部。</span><br><span class="line"></span><br><span class="line">gg 移动到文件头。 = [[</span><br><span class="line"></span><br><span class="line">G（shift + g） 移动到文件尾。 = ]]</span><br><span class="line"></span><br><span class="line">Ctrl + e 向下滚动一行</span><br><span class="line"></span><br><span class="line">Ctrl + y 向上滚动一行</span><br><span class="line"></span><br><span class="line">Ctrl + d 向下滚动半屏</span><br><span class="line"></span><br><span class="line">Ctrl + u 向上滚动半屏</span><br><span class="line"></span><br><span class="line">Ctrl + f 向下滚动一屏</span><br><span class="line"></span><br><span class="line">Ctrl + b 向上滚动一屏</span><br></pre></td></tr></table></figure>
-<h4 id="用户及用户组管理"><a href="#用户及用户组管理" class="headerlink" title="用户及用户组管理"></a>用户及用户组管理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/etc/passwd    存储用户账号</span><br><span class="line"></span><br><span class="line">/etc/group       存储组账号</span><br><span class="line"></span><br><span class="line">/etc/shadow    存储用户账号的密码</span><br><span class="line"></span><br><span class="line">/etc/gshadow  存储用户组账号的密码</span><br><span class="line"></span><br><span class="line">useradd 用户名</span><br><span class="line"></span><br><span class="line">userdel 用户名</span><br><span class="line"></span><br><span class="line">adduser 用户名</span><br><span class="line"></span><br><span class="line">groupadd 组名</span><br><span class="line"></span><br><span class="line">groupdel 组名</span><br><span class="line"></span><br><span class="line">passwd root     给root设置密码</span><br><span class="line"></span><br><span class="line">su root</span><br><span class="line"></span><br><span class="line">su - root</span><br><span class="line"></span><br><span class="line">/etc/profile     系统环境变量</span><br><span class="line"></span><br><span class="line">bash_profile     用户环境变量</span><br><span class="line"></span><br><span class="line">.bashrc              用户环境变量</span><br><span class="line"></span><br><span class="line">su user              切换用户，加载配置文件.bashrc</span><br><span class="line"></span><br><span class="line">su - user            切换用户，加载配置文件/etc/profile ，加载bash_profile</span><br><span class="line"></span><br><span class="line">更改文件的用户及用户组</span><br><span class="line"></span><br><span class="line">sudo chown [-R] owner[:group] &#123;File|Directory&#125;</span><br><span class="line"></span><br><span class="line">例如：还以jdk-7u21-linux-i586.tar.gz为例。属于用户hadoop，组hadoop</span><br><span class="line"></span><br><span class="line">要想切换此文件所属的用户及组。可以使用命令。</span><br><span class="line"></span><br><span class="line">sudo chown root:root jdk-7u21-linux-i586.tar.gz</span><br></pre></td></tr></table></figure>
-<h4 id="显示消耗内存最多的10个进程"><a href="#显示消耗内存最多的10个进程" class="headerlink" title="显示消耗内存最多的10个进程"></a>显示消耗内存最多的10个进程</h4><p><code>ps aux | sort -nk +4 | tail</code></p>
-<h4 id="实时查看目录下最新改动过的文件"><a href="#实时查看目录下最新改动过的文件" class="headerlink" title="实时查看目录下最新改动过的文件"></a>实时查看目录下最新改动过的文件</h4><p><code>watch -d -n 1 &#39;df; ls -FlAt /path&#39;</code></p>
-<h4 id="查看端口占用"><a href="#查看端口占用" class="headerlink" title="查看端口占用"></a>查看端口占用</h4><p><code>netstat -tulnp</code></p>
-<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><p><a href="https://www.jianshu.com/p/85866c388d76" target="_blank" rel="noopener">Linux　命令速查</a></p>
-
+      <h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3>
+      
+        <div class="readmore">
+          <a href="/2019/04/03/Linux-Command-速查/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
       
     </div>
     
@@ -486,21 +593,21 @@
     <div class="content pure">
       <ul class="entry">
         
-          <li><a class="flat-box" title="/categories/Java-Collections/" href="/categories/Java-Collections/"><div class="name">Java Collections</div><div class="badge">(2)</div></a></li>
-        
           <li><a class="flat-box" title="/categories/Java-Web/" href="/categories/Java-Web/"><div class="name">Java Web</div><div class="badge">(5)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java-基础/" href="/categories/Java-基础/"><div class="name">Java 基础</div><div class="badge">(8)</div></a></li>
-        
-          <li><a class="flat-box" title="/categories/Java-工具类/" href="/categories/Java-工具类/"><div class="name">Java 工具类</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(12)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(2)</div></a></li>
+          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(4)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring系列/" href="/categories/Spring系列/"><div class="name">Spring系列</div><div class="badge">(1)</div></a></li>
         
       </ul>
     </div>
@@ -525,7 +632,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/ADE/" style="font-size: 14px; color: #999">ADE</a> <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 16.5px; color: #888">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/collection/" style="font-size: 16.5px; color: #888">collection</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 21.5px; color: #666">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 14px; color: #999">linux</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 14px; color: #999">oracle</a> <a href="/tags/util/" style="font-size: 19px; color: #777">util</a>
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
     </div>
   </section>
 
