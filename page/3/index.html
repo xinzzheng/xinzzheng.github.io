@@ -188,6 +188,326 @@
       
         
   <h2 class="title">
+    <a href="/2019/04/03/ADE-Commands/">
+      ADE Commands
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-03</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Oracle-Tools/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Oracle Tools</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h4 id="常用的ADE-Commands"><a href="#常用的ADE-Commands" class="headerlink" title="常用的ADE Commands:"></a>常用的ADE Commands:</h4>
+      
+        <div class="readmore">
+          <a href="/2019/04/03/ADE-Commands/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/04/02/Java-容器/">
+       Java 集合 - Collection
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-02</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Java系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Java系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <a id="more"></a>
+<p><img src="/2019/04/02/Java-容器/collections.png" alt><br><img src="/2019/04/02/Java-容器/coll_mindmap.png" alt></p>
+<table align="center"><br><tr><td colspan="2" rowspan="2" align="center" border="0"></td><th colspan="5" align="center">Implementations</th></tr><tr><th>Hash Table</th><th>Resizable Array</th><th>Balanced Tree</th><th>Linked List</th><th>Hash Table + Linked List</th></tr><tr><th rowspan="4">Interfaces</th><th>Set</th><td><tt>HashSet</tt></td><td></td><td><tt>TreeSet</tt></td><td></td><td><tt>LinkedHashSet</tt></td></tr><tr><th>List</th><td></td><td><tt>ArrayList</tt></td><td></td><td><tt>LinkedList</tt></td><td></td></tr><tr><th>Deque</th><td></td><td><tt>ArrayDeque</tt></td><td></td><td><tt>LinkedList</tt></td><td></td></tr><tr><th>Map</th><td><tt>HashMap</tt></td><td></td><td><tt>TreeMap</tt></td><td></td><td><tt>LinkedHashMap</tt></td></tr></table>
+
+<h3 id="1-容器类接口和抽象容器类"><a href="#1-容器类接口和抽象容器类" class="headerlink" title="1.容器类接口和抽象容器类"></a>1.容器类接口和抽象容器类</h3><h4 id="1-1-说明"><a href="#1-1-说明" class="headerlink" title="1.1 说明"></a>1.1 说明</h4><p>　　容器接口是容器的基础。使用接口可以将容器的实现与容器接口分开，因而可以使用相同的方法访问容器而不需关心容器具体的数据结构。</p>
+<p>　　同理，Iterator接口也使用户能够使用相同的方法访问不同的容器类。</p>
+<h4 id="1-2-容器接口（Collection，Map，Iterator）"><a href="#1-2-容器接口（Collection，Map，Iterator）" class="headerlink" title="1.2 容器接口（Collection，Map，Iterator）"></a>1.2 容器接口（Collection，Map，Iterator）</h4><h5 id="1）collection接口"><a href="#1）collection接口" class="headerlink" title="1）collection接口"></a>1）collection接口</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* boolean add(Object obj): 添加对象，集合发生变化则返回true</span><br><span class="line">* Iterator iterator()：返回Iterator接口的对象</span><br><span class="line">* int size()</span><br><span class="line">* boolean isEmpty()</span><br><span class="line">* boolean contains(Object obj)</span><br><span class="line">* void clear()</span><br><span class="line">* &lt;T&gt; T[] toArray(T[] a)</span><br></pre></td></tr></table></figure>
+<h5 id="2）Map接口（存放键值对，Map中的值也可以是一个容器）"><a href="#2）Map接口（存放键值对，Map中的值也可以是一个容器）" class="headerlink" title="2）Map接口（存放键值对，Map中的值也可以是一个容器）"></a>2）Map接口（存放键值对，Map中的值也可以是一个容器）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">* Object get（Object key）</span><br><span class="line">* Object put（Object key, Object value）</span><br><span class="line">* Set keySet() : returns the keys set      Set&lt;K&gt; keySet()</span><br><span class="line">* Set entrySet(): returns mappings set    Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</span><br><span class="line">* containsKey()</span><br><span class="line">* containsValue()</span><br></pre></td></tr></table></figure>
+<h5 id="3）Iterator接口"><a href="#3）Iterator接口" class="headerlink" title="3）Iterator接口"></a>3）Iterator接口</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* Object next()</span><br><span class="line">* boolean hasNext()</span><br><span class="line">* void remove()</span><br></pre></td></tr></table></figure>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>1.使用抽象编程思想，创建时使用父类引用指向子类对象，返回时返回抽象接口</p>
+<p>2.如果涉及到堆栈，队列等操作，应该考虑用List，对于需要快速插入，删除元素，应该使用LinkedList，如果需要快速随机访问元素，应该使用ArrayList。</p>
+<p>3.如果程序在单线程环境中使用非同步的类，其效率较高</p>
+<p>4.可以使用Collections 工具类中 unmodifiableList/unmodifiableMap/unmodifiableSet/unmodifiableSortedMap/unmodifiableSortedSet 等创建不能修改的List,Map,List等</p>
+<p>5.可以使用Collections工具类中Collections.synchronizedList(new ArrayList())等实现同步</p>
+<p>6.可以使用Arrays.equal()判断两个数组是否相等</p>
+
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/04/02/Java-Transient-关键字/">
+       Java Transient 关键字
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-02</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Java系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Java系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h3 id="1-transient的作用及使用方法"><a href="#1-transient的作用及使用方法" class="headerlink" title="1. transient的作用及使用方法"></a>1. transient的作用及使用方法</h3><p>一个对象只要实现了Serilizable接口，这个对象就可以被序列化.<br>只要这个类实现了Serilizable接口，这个类的所有属性和方法都会自动序列化。</p>
+      
+        <div class="readmore">
+          <a href="/2019/04/02/Java-Transient-关键字/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/2019/04/02/Java-Final-关键字/">
        Java Final 关键字
     </a>
@@ -909,215 +1229,6 @@
           </div>
         
       
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/04/01/反射/">
-      Java 反射
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://yoursite.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>Xin Zheng</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-04-01</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/Java系列/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Java系列</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
-<p>运行一个程序需要先将类加载到运行时数据区，同时会将类的结构信息保存到方法区中，同时会在堆区中创建一个特殊的对象，可以使用该对象操作方法区中类的信息，那么这个特殊的对象是什么类型呢？该对象Java提供了Class类型表示。其实每个类只要加载之后都会对应有自己的这个特特殊类对象，可以使用这个特殊类对象操作方法区中的类信息结构，这种方式就是反射机制。<br>　　<br></p></blockquote>
-      
-        <div class="readmore">
-          <a href="/2019/04/01/反射/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/04/01/Java初始化顺序/">
-      Java 初始化顺序
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://yoursite.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>Xin Zheng</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-04-01</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/Java系列/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Java系列</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="Java程序初始化的顺序是怎么样的"><a href="#Java程序初始化的顺序是怎么样的" class="headerlink" title="Java程序初始化的顺序是怎么样的"></a>Java程序初始化的顺序是怎么样的</h3><p>　　在 Java 语言中，当实例化对象时，对象所在类的所有成员变量首先要进行初始化，只有当所有类成员完成初始化后，才会调用对象所在类的构造函数创建象。<br>　　<br></p>
-      
-        <div class="readmore">
-          <a href="/2019/04/01/Java初始化顺序/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1133,8 +1244,14 @@
             </a>
           
           <p class="current">
-            3 / 3
+            3 / 4
           </p>
+          
+            <a class="next" rel="next" href="/page/4/">
+              <section class="post next">
+                &nbsp;Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+              </section>
+            </a>
           
         </div>
       </div>
@@ -1284,7 +1401,7 @@
         
           <li><a class="flat-box" title="/categories/Java-Web/" href="/categories/Java-Web/"><div class="name">Java Web</div><div class="badge">(5)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(12)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(14)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
         
@@ -1292,7 +1409,7 @@
         
           <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(2)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(2)</div></a></li>
         
@@ -1321,7 +1438,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
     </div>
   </section>
 

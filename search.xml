@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>JVM 知识图谱</title>
+      <link href="/2019/05/06/JVM-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/"/>
+      <url>/2019/05/06/JVM-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="JVM的内存结构"><a href="#JVM的内存结构" class="headerlink" title="JVM的内存结构"></a>JVM的内存结构</h2><blockquote><p>堆（Heap）：线程共享。所有的对象实例以及数组都要在堆上分配。回收器主要管理的对象。  </p></blockquote><blockquote><p>方法区（Method Area）：线程共享。存储类信息、常量、静态变量、即时编译器编译后的代码。</p></blockquote><blockquote><p>方法栈（JVM Stack）：线程私有。存储局部变量表、操作栈、动态链接、方法出口，对象指针。</p><p>本地方法栈（Native Method Stack）：线程私有。为虚拟机使用到的Native 方法服务。如Java使用c或者c++编写的接口服务时，代码在此区运行。</p><p>程序计数器（Program Counter Register）：线程私有。有些文章也翻译成PC寄存器（PC Register），同一个东西。它可以看作是当前线程所执行的字节码的行号指示器。指向下一条要执行的指令。</p></blockquote><a id="more"></a><p><img src="/2019/05/06/JVM-知识图谱/JVM内存模型.png" alt="JVM内存模型"></p><h2 id="Java创建对象的方法"><a href="#Java创建对象的方法" class="headerlink" title="Java创建对象的方法"></a>Java创建对象的方法</h2><ul><li><p>new</p><p>  <code>A a1 = new A();</code></p></li><li><p>反射</p>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">A a2 = (A)Class.forName(<span class="string">"A"</span>).newInstance();</span><br><span class="line"></span><br><span class="line">A a3 = A.class.newInstance();</span><br><span class="line"></span><br><span class="line">A a4 = A.class.getConstructor().newInstance();</span><br></pre></td></tr></table></figure></li><li><p>Clone</p>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">Cloneable</span></span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line"><span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A a5 = (A) a4.clone();</span><br></pre></td></tr></table></figure></li><li><p>Deserialization</p>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">Cloneable</span>, <span class="title">Serializable</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ObjectOutputStream output = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"A"</span>));</span><br><span class="line">output.writeObject(a5);</span><br><span class="line">output.close();</span><br><span class="line"></span><br><span class="line">ObjectInputStream input = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"A"</span>));</span><br><span class="line">A a6 = (A) input.readObject();</span><br></pre></td></tr></table></figure></li></ul><h2 id="Java对象创建过程"><a href="#Java对象创建过程" class="headerlink" title="Java对象创建过程"></a>Java对象创建过程</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>序列化和反序列化的底层实现原理</title>
+      <link href="/2019/05/06/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+      <url>/2019/05/06/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>序列化：对象序列化的最主要的用处就是在传递和保存对象的时候，保证对象的完整性和可传递性。序列化是把对象转换成有序字节流，以便在网络上传输或者保存在本地文件中。序列化后的字节流保存了Java对象的状态以及相关的描述信息。序列化机制的核心作用就是对象状态的保存与重建。  </p></blockquote><blockquote><p>反序列化：客户端从文件中或网络上获得序列化后的对象字节流后，根据字节流中所保存的对象状态及描述信息，通过反序列化重建对象。</p></blockquote><a id="more"></a><h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><ul><li><p>永久性保存对象，保存对象的字节序列到本地文件或者数据库中；</p></li><li><p>通过序列化以字节流的形式使对象在网络中进行传递和接收；</p></li><li><p>通过序列化在进程间传递对象；</p></li></ul><h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><ul><li>只有实现了Serializable或Externalizable接口的类的对象才能被序列化，否则抛出异常！</li></ul><h4 id="实现Java对象序列化与反序列化的方法"><a href="#实现Java对象序列化与反序列化的方法" class="headerlink" title="实现Java对象序列化与反序列化的方法"></a>实现Java对象序列化与反序列化的方法</h4><h5 id="实现了Serializable接口"><a href="#实现了Serializable接口" class="headerlink" title="实现了Serializable接口"></a>实现了Serializable接口</h5><ul><li><p>ObjectOutputStream采用默认的序列化方式，对Obj对象的非transient的实例变量进行序列化。</p></li><li><p>ObjcetInputStream采用默认的反序列化方式，对Obj对象的非transient的实例变量进行反序列化。</p></li></ul><h5 id="实现了Serializable接口，且还定义了readObject-writeObject"><a href="#实现了Serializable接口，且还定义了readObject-writeObject" class="headerlink" title="实现了Serializable接口，且还定义了readObject/writeObject"></a>实现了Serializable接口，且还定义了readObject/writeObject</h5><ul><li>ObjectOutputStream调用Obj对象的writeObject(ObjectOutputStream out)的方法进行序列化。</li><li>ObjectInputStream会调用Obj对象的readObject(ObjectInputStream in)的方法进行反序列化。</li></ul><h5 id="实现了Externalnalizable接口，必须实现readExternal-writeExternal"><a href="#实现了Externalnalizable接口，必须实现readExternal-writeExternal" class="headerlink" title="实现了Externalnalizable接口，必须实现readExternal/writeExternal"></a>实现了Externalnalizable接口，必须实现readExternal/writeExternal</h5><ul><li>ObjectOutputStream调用Obj对象的writeExternal(ObjectOutput out))的方法进行序列化。</li><li>ObjectInputStream会调用Obj对象的readExternal(ObjectInput in)的方法进行反序列化。</li></ul><h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ol><li>序列化时，只对对象的状态进行保存，而不管对象的方法；</li><li>当一个父类实现序列化，子类自动实现序列化，不需要显式实现Serializable接口；</li><li>当一个对象的实例变量引用其他对象，序列化该对象时也把引用对象进行序列化；</li><li><p>并非所有的对象都可以序列化，至于为什么不可以，有很多原因了，比如：</p><ul><li><p>安全方面的原因，比如一个对象拥有private，public等field，对于一个要传输的对象，比如写到文件，或者进行RMI传输等等，在序列化进行传输的过程中，这个对象的private等域是不受保护的；</p></li><li><p>资源分配方面的原因，比如socket，thread类，如果可以序列化，进行传输或者保存，也无法对他们进行重新的资源分配，而且，也是没有必要这样实现；</p></li></ul></li><li><p>声明为static和transient类型的成员数据不能被序列化。因为static代表类的状态，transient代表对象的临时数据。</p></li><li><p>序列化运行时使用一个称为 serialVersionUID 的版本号与每个可序列化类相关联，该序列号在反序列化过程中用于验证序列化对象的发送者和接收者是否为该对象加载了与序列化兼容的类。为它赋予明确的值。显式地定义serialVersionUID有两种用途：</p><ul><li>在某些场合，希望类的不同版本对序列化兼容，因此需要确保类的不同版本具有相同的serialVersionUID；</li><li>在某些场合，不希望类的不同版本对序列化兼容，因此需要确保类的不同版本具有不同的serialVersionUID。</li></ul></li><li><p>Java有很多基础类已经实现了serializable接口，比如String,Vector等。但是也有一些没有实现serializable接口的；</p></li><li>如果一个对象的成员变量是一个对象，那么这个对象的数据成员也会被保存！这是能用序列化解决深拷贝的重要原因；</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis 内容体系</title>
+      <link href="/2019/05/06/Redis-%E5%86%85%E5%AE%B9%E4%BD%93%E7%B3%BB/"/>
+      <url>/2019/05/06/Redis-%E5%86%85%E5%AE%B9%E4%BD%93%E7%B3%BB/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。<br>Redis是一个开源的使用ANSI 、C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。</p></blockquote><a id="more"></a><p><img src="/2019/05/06/Redis-内容体系/Redis知识图谱.png" alt="Redis 知识图谱"></p><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><h3 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h3><ul><li>绝大部分请求是纯粹的内存操作，非常快速；</li><li>使用了很多查找操作都特别快的数据结构进行数据存储，Redis中的数据结构是专门设计的。如HashMap，查找、插入的时间复杂度都是O(1)；</li><li>采用单线程，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗CPU，不用去考虑各种锁的问题，不存在加锁、释放锁操作，没有因为可能出现死锁而导致的性能消耗；</li><li>用到了非阻塞I/O多路复用机制。</li></ul><h3 id="丰富的数据类型"><a href="#丰富的数据类型" class="headerlink" title="丰富的数据类型"></a>丰富的数据类型</h3><ul><li>String</li><li>List</li><li>Hash</li><li>set</li><li>zset</li></ul><h3 id="原子性，支持事务"><a href="#原子性，支持事务" class="headerlink" title="原子性，支持事务"></a>原子性，支持事务</h3><ul><li>Redis支持事务，并且它的所有操作都是原子性的，同时Redis还支持对几个操作合并后的原子性执行。</li></ul><h3 id="丰富的特性"><a href="#丰富的特性" class="headerlink" title="丰富的特性"></a>丰富的特性</h3><p>Redis具有丰富的特性，比如可以用作分布式锁；可以持久化数据；可以用作消息队列、排行榜、计数器；还支持publish/subscribe、通知、key过期等等。当我们要用中间件来解决实际问题的时候，Redis总能发挥出自己的用处。</p><h2 id="Redis和Memcache对比"><a href="#Redis和Memcache对比" class="headerlink" title="Redis和Memcache对比"></a>Redis和Memcache对比</h2><h3 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h3><ul><li>Memcache把数据全部存在内存之中，断电后会挂掉，无法做到数据的持久化，且数据不能超过内存大小。</li><li>Redis有一部分数据存在硬盘上，可以做到数据的持久性。</li></ul><h3 id="数据支持类型"><a href="#数据支持类型" class="headerlink" title="数据支持类型"></a>数据支持类型</h3><ul><li>Memcache对数据类型支持相对简单，只支持String类型的数据结构。</li><li>Redis有丰富的数据类型，包括：String、List、Hash、Set、Zset。</li></ul><h3 id="使用的底层模型"><a href="#使用的底层模型" class="headerlink" title="使用的底层模型"></a>使用的底层模型</h3><ul><li>它们之间底层实现方式以及与客户端之间通信的应用协议不一样。</li><li>Redis直接自己构建了VM机制 ，因为一般的系统调用系统函数，会浪费一定的时间去移动和请求。</li></ul><h3 id="存储值大小"><a href="#存储值大小" class="headerlink" title="存储值大小"></a>存储值大小</h3><ul><li>Redis最大可以存储1GB，而memcache只有1MB。</li></ul><h2 id="Redis存在的问题及解决方案"><a href="#Redis存在的问题及解决方案" class="headerlink" title="Redis存在的问题及解决方案"></a>Redis存在的问题及解决方案</h2><h3 id="缓存数据库的双写一致性的问题"><a href="#缓存数据库的双写一致性的问题" class="headerlink" title="缓存数据库的双写一致性的问题"></a>缓存数据库的双写一致性的问题</h3><blockquote><p>问题：一致性的问题是分布式系统中很常见的问题。一致性一般分为两种：强一致性和最终一致性，当我们要满足强一致性的时候，Redis也无法做到完美无瑕，因为数据库和缓存双写，肯定会出现不一致的情况，Redis只能保证最终一致性。</p></blockquote><ul><li><p>第一种方式是给缓存设置一定的过期时间，在缓存过期之后会自动查询数据库，保证数据库和缓存的一致性。</p></li><li><p>如果不设置过期时间的话，我们首先要选取正确的更新策略：先更新数据库再删除缓存。但我们删除缓存的时候也可能出现某些问题，所以需要将要删除的缓存的key放到消息队列中去，不断重试，直到删除成功为止。</p></li></ul><h3 id="缓存雪崩问题"><a href="#缓存雪崩问题" class="headerlink" title="缓存雪崩问题"></a>缓存雪崩问题</h3><blockquote><p>我们应该都在电影里看到过雪崩，开始很平静，然后一瞬间就开始崩塌，具有很强的毁灭性。这里也是一样的，我们执行代码的时候将很多缓存的实效时间设定成一样，接着这些缓存在同一时间都会实效，然后都会重新访问数据库更新数据，这样会导致数据库连接数过多、压力过大而崩溃。</p></blockquote><ul><li>设置缓存过期时间的时候加一个随机值。</li><li>设置双缓存，缓存1设置缓存时间，缓存2不设置，1过期后直接返回缓存2，并且启动一个进程去更新缓存1和2。</li></ul><h3 id="缓存穿透问题"><a href="#缓存穿透问题" class="headerlink" title="缓存穿透问题"></a>缓存穿透问题</h3><blockquote><p>缓存穿透是指一些非正常用户(黑客)故意去请求缓存中不存在的数据，导致所有的请求都集中到到数据库上，从而导致数据库连接异常。</p></blockquote><ul><li>利用互斥锁。缓存失效的时候，不能直接访问数据库，而是要先获取到锁，才能去请求数据库。没得到锁，则休眠一段时间后重试。</li><li>采用异步更新策略。无论key是否取到值，都直接返回。value值中维护一个缓存失效时间，缓存如果过期，异步起一个线程去读数据库，更新缓存。需要做缓存预热(项目启动前，先加载缓存)操作。</li><li>提供一个能迅速判断请求是否有效的拦截机制。比如利用布隆过滤器，内部维护一系列合法有效的key，迅速判断出请求所携带的Key是否合法有效。如果不合法，则直接返回。</li></ul><h3 id="缓存的并发竞争问题"><a href="#缓存的并发竞争问题" class="headerlink" title="缓存的并发竞争问题"></a>缓存的并发竞争问题</h3><blockquote></blockquote><p>缓存并发竞争的问题，主要发生在多线程对某个key进行set的时候，这时会出现数据不一致的情况。<br>比如Redis中我们存着一个key为amount的值，它的value是100，两个线程同时都对value加100然后更新，正确的结果应该是变为300。但是两个线程拿到这个值的时候都是100，最后结果也就是200，这就导致了缓存的并发竞争问题。</p><ul><li>如果多线程操作没有顺序要求的话，我们可以设置一个分布式锁，然后多个线程去争夺锁，谁先抢到锁谁就可以先执行。这个分布式锁可以用zookeeper或者Redis本身去实现。</li><li>可以利用Redis的incr命令。</li><li>当我们的多线程操作需要顺序的时候，我们可以设置一个消息队列，把需要的操作加到消息队列中去，严格按照队列的先后执行命令。</li></ul><h2 id="Redis的过期策略"><a href="#Redis的过期策略" class="headerlink" title="Redis的过期策略"></a>Redis的过期策略</h2><blockquote><p>Redis随着数据的增多，内存占用率会持续变高，我们以为一些键到达设置的删除时间就会被删除，但是时间到了，内存的占用率还是很高，这是为什么呢？</p></blockquote><ul><li>Redis采用的是定期删除和惰性删除的内存淘汰机制。</li></ul><h3 id="定期删除"><a href="#定期删除" class="headerlink" title="定期删除"></a>定期删除</h3><p>定期删除和定时删除是有区别的：</p><ul><li>定时删除是必须严格按照设定的时间去删除缓存，这就需要我们设置一个定时器去不断地轮询所有的key，判断是否需要进行删除。但是这样的话cpu的资源会被大幅度地占据，资源的利用率变低。所以我们选择采用定期删除，。</li><li>定期删除是时间由我们定，我们可以每隔100ms进行检查，但还是不能检查所有的缓存，Redis还是会卡死，只能随机地去检查一部分缓存，但是这样会有一些缓存无法在规定时间内删除。这时惰性删除就派上用场了。</li></ul><h3 id="惰性删除"><a href="#惰性删除" class="headerlink" title="惰性删除"></a>惰性删除</h3><p>举个简单的例子：中学的时候，平时作业太多，根本做不完，老师说下节课要讲这个卷子，你们都做完了吧？其实有很多人没做完，所以需要在下节课之前赶紧补上。  </p><p>惰性删除也是这个道理，我们的这个值按理说应该没了，但是它还在，当你要获取这个key的时候，发现这个key应该过期了，赶紧删了，然后返回一个’没有这个值，已经过期了!’。  </p><p>现在我们有了定期删除 + 惰性删除的过期策略，就可以高枕无忧了吗？并不是这样的，如果这个key一直不访问，那么它会一直滞留，也是不合理的，这就需要我们的内存淘汰机制了。</p><h3 id="Redis内存淘汰策略"><a href="#Redis内存淘汰策略" class="headerlink" title="Redis内存淘汰策略"></a>Redis内存淘汰策略</h3><p><img src="/2019/05/06/Redis-内容体系/Redis内存淘汰策略.png" alt="Redis内存淘汰策略"></p><p>在Redis.conf中我们可以进行配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># maxmemory-policy allkeys-lru</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Spring Boot(二)</title>
       <link href="/2019/04/29/Spring-Boot-%E4%BA%8C/"/>
       <url>/2019/04/29/Spring-Boot-%E4%BA%8C/</url>

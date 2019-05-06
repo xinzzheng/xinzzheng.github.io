@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Redis 内容体系 | Xin Blog</title>
+  
+  
+  <meta name="description" content="Practice makes perfect.">
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.4.19/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class="cover post half">
+      
+        
+  <h1 class="title">Material X</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder>
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class="menu navgation">
+  <ul class="h-list">
+    
+      
+        <li>
+          <a class="nav home" href="/" id="home">
+            <i class="fas fa-rss fa-fw"></i>&nbsp;博文
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/projects/" id="projects">
+            <i class="fas fa-code-branch fa-fw"></i>&nbsp;项目
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/" rel="nofollow" id="friends">
+            <i class="fas fa-link fa-fw"></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/" rel="nofollow" id="about">
+            <i class="fas fa-info-circle fa-fw"></i>&nbsp;关于
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href="/">
+        
+          Xin Blog
+        
+      </a>
+			<div class="menu navgation">
+				<ul class="h-list">
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/" id="home">
+									<i class="fas fa-grin fa-fw"></i>&nbsp;示例
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/blog/categories/" rel="nofollow" id="blogcategories">
+									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/blog/tags/" rel="nofollow" id="blogtags">
+									<i class="fas fa-hashtag fa-fw"></i>&nbsp;标签
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/blog/archives/" rel="nofollow" id="blogarchives">
+									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+        
+          <li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/" id="home">
+								<i class="fas fa-clock fa-fw"></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/blog/archives/" rel="nofollow" id="blogarchives">
+								<i class="fas fa-archive fa-fw"></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/projects/" id="projects">
+								<i class="fas fa-code-branch fa-fw"></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/" rel="nofollow" id="friends">
+								<i class="fas fa-link fa-fw"></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/" rel="nofollow" id="https:xaoxuu.comwikimaterial-x">
+								<i class="fas fa-book fa-fw"></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/" rel="nofollow" id="about">
+								<i class="fas fa-info-circle fa-fw"></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class="l_main">
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/2019/05/06/Redis-内容体系/">
+        Redis 内容体系
+      </a>
+    </h1>
+  
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-06</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Redis系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Redis系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class="notlink">
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <blockquote>
+<p>REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。<br>Redis是一个开源的使用ANSI 、C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。</p>
+</blockquote>
+<a id="more"></a>
+<p><img src="/2019/05/06/Redis-内容体系/Redis知识图谱.png" alt="Redis 知识图谱"></p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><h3 id="速度快"><a href="#速度快" class="headerlink" title="速度快"></a>速度快</h3><ul>
+<li>绝大部分请求是纯粹的内存操作，非常快速；</li>
+<li>使用了很多查找操作都特别快的数据结构进行数据存储，Redis中的数据结构是专门设计的。如HashMap，查找、插入的时间复杂度都是O(1)；</li>
+<li>采用单线程，避免了不必要的上下文切换和竞争条件，也不存在多进程或者多线程导致的切换而消耗CPU，不用去考虑各种锁的问题，不存在加锁、释放锁操作，没有因为可能出现死锁而导致的性能消耗；</li>
+<li>用到了非阻塞I/O多路复用机制。</li>
+</ul>
+<h3 id="丰富的数据类型"><a href="#丰富的数据类型" class="headerlink" title="丰富的数据类型"></a>丰富的数据类型</h3><ul>
+<li>String</li>
+<li>List</li>
+<li>Hash</li>
+<li>set</li>
+<li>zset</li>
+</ul>
+<h3 id="原子性，支持事务"><a href="#原子性，支持事务" class="headerlink" title="原子性，支持事务"></a>原子性，支持事务</h3><ul>
+<li>Redis支持事务，并且它的所有操作都是原子性的，同时Redis还支持对几个操作合并后的原子性执行。</li>
+</ul>
+<h3 id="丰富的特性"><a href="#丰富的特性" class="headerlink" title="丰富的特性"></a>丰富的特性</h3><p>Redis具有丰富的特性，比如可以用作分布式锁；可以持久化数据；可以用作消息队列、排行榜、计数器；还支持publish/subscribe、通知、key过期等等。当我们要用中间件来解决实际问题的时候，Redis总能发挥出自己的用处。</p>
+<h2 id="Redis和Memcache对比"><a href="#Redis和Memcache对比" class="headerlink" title="Redis和Memcache对比"></a>Redis和Memcache对比</h2><h3 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h3><ul>
+<li>Memcache把数据全部存在内存之中，断电后会挂掉，无法做到数据的持久化，且数据不能超过内存大小。</li>
+<li>Redis有一部分数据存在硬盘上，可以做到数据的持久性。</li>
+</ul>
+<h3 id="数据支持类型"><a href="#数据支持类型" class="headerlink" title="数据支持类型"></a>数据支持类型</h3><ul>
+<li>Memcache对数据类型支持相对简单，只支持String类型的数据结构。</li>
+<li>Redis有丰富的数据类型，包括：String、List、Hash、Set、Zset。</li>
+</ul>
+<h3 id="使用的底层模型"><a href="#使用的底层模型" class="headerlink" title="使用的底层模型"></a>使用的底层模型</h3><ul>
+<li>它们之间底层实现方式以及与客户端之间通信的应用协议不一样。</li>
+<li>Redis直接自己构建了VM机制 ，因为一般的系统调用系统函数，会浪费一定的时间去移动和请求。</li>
+</ul>
+<h3 id="存储值大小"><a href="#存储值大小" class="headerlink" title="存储值大小"></a>存储值大小</h3><ul>
+<li>Redis最大可以存储1GB，而memcache只有1MB。</li>
+</ul>
+<h2 id="Redis存在的问题及解决方案"><a href="#Redis存在的问题及解决方案" class="headerlink" title="Redis存在的问题及解决方案"></a>Redis存在的问题及解决方案</h2><h3 id="缓存数据库的双写一致性的问题"><a href="#缓存数据库的双写一致性的问题" class="headerlink" title="缓存数据库的双写一致性的问题"></a>缓存数据库的双写一致性的问题</h3><blockquote>
+<p>问题：一致性的问题是分布式系统中很常见的问题。一致性一般分为两种：强一致性和最终一致性，当我们要满足强一致性的时候，Redis也无法做到完美无瑕，因为数据库和缓存双写，肯定会出现不一致的情况，Redis只能保证最终一致性。</p>
+</blockquote>
+<ul>
+<li><p>第一种方式是给缓存设置一定的过期时间，在缓存过期之后会自动查询数据库，保证数据库和缓存的一致性。</p>
+</li>
+<li><p>如果不设置过期时间的话，我们首先要选取正确的更新策略：先更新数据库再删除缓存。但我们删除缓存的时候也可能出现某些问题，所以需要将要删除的缓存的key放到消息队列中去，不断重试，直到删除成功为止。</p>
+</li>
+</ul>
+<h3 id="缓存雪崩问题"><a href="#缓存雪崩问题" class="headerlink" title="缓存雪崩问题"></a>缓存雪崩问题</h3><blockquote>
+<p>我们应该都在电影里看到过雪崩，开始很平静，然后一瞬间就开始崩塌，具有很强的毁灭性。这里也是一样的，我们执行代码的时候将很多缓存的实效时间设定成一样，接着这些缓存在同一时间都会实效，然后都会重新访问数据库更新数据，这样会导致数据库连接数过多、压力过大而崩溃。</p>
+</blockquote>
+<ul>
+<li>设置缓存过期时间的时候加一个随机值。</li>
+<li>设置双缓存，缓存1设置缓存时间，缓存2不设置，1过期后直接返回缓存2，并且启动一个进程去更新缓存1和2。</li>
+</ul>
+<h3 id="缓存穿透问题"><a href="#缓存穿透问题" class="headerlink" title="缓存穿透问题"></a>缓存穿透问题</h3><blockquote>
+<p>缓存穿透是指一些非正常用户(黑客)故意去请求缓存中不存在的数据，导致所有的请求都集中到到数据库上，从而导致数据库连接异常。</p>
+</blockquote>
+<ul>
+<li>利用互斥锁。缓存失效的时候，不能直接访问数据库，而是要先获取到锁，才能去请求数据库。没得到锁，则休眠一段时间后重试。</li>
+<li>采用异步更新策略。无论key是否取到值，都直接返回。value值中维护一个缓存失效时间，缓存如果过期，异步起一个线程去读数据库，更新缓存。需要做缓存预热(项目启动前，先加载缓存)操作。</li>
+<li>提供一个能迅速判断请求是否有效的拦截机制。比如利用布隆过滤器，内部维护一系列合法有效的key，迅速判断出请求所携带的Key是否合法有效。如果不合法，则直接返回。</li>
+</ul>
+<h3 id="缓存的并发竞争问题"><a href="#缓存的并发竞争问题" class="headerlink" title="缓存的并发竞争问题"></a>缓存的并发竞争问题</h3><blockquote>
+</blockquote>
+<p>缓存并发竞争的问题，主要发生在多线程对某个key进行set的时候，这时会出现数据不一致的情况。<br>比如Redis中我们存着一个key为amount的值，它的value是100，两个线程同时都对value加100然后更新，正确的结果应该是变为300。但是两个线程拿到这个值的时候都是100，最后结果也就是200，这就导致了缓存的并发竞争问题。</p>
+<ul>
+<li>如果多线程操作没有顺序要求的话，我们可以设置一个分布式锁，然后多个线程去争夺锁，谁先抢到锁谁就可以先执行。这个分布式锁可以用zookeeper或者Redis本身去实现。</li>
+<li>可以利用Redis的incr命令。</li>
+<li>当我们的多线程操作需要顺序的时候，我们可以设置一个消息队列，把需要的操作加到消息队列中去，严格按照队列的先后执行命令。</li>
+</ul>
+<h2 id="Redis的过期策略"><a href="#Redis的过期策略" class="headerlink" title="Redis的过期策略"></a>Redis的过期策略</h2><blockquote>
+<p>Redis随着数据的增多，内存占用率会持续变高，我们以为一些键到达设置的删除时间就会被删除，但是时间到了，内存的占用率还是很高，这是为什么呢？</p>
+</blockquote>
+<ul>
+<li>Redis采用的是定期删除和惰性删除的内存淘汰机制。</li>
+</ul>
+<h3 id="定期删除"><a href="#定期删除" class="headerlink" title="定期删除"></a>定期删除</h3><p>定期删除和定时删除是有区别的：</p>
+<ul>
+<li>定时删除是必须严格按照设定的时间去删除缓存，这就需要我们设置一个定时器去不断地轮询所有的key，判断是否需要进行删除。但是这样的话cpu的资源会被大幅度地占据，资源的利用率变低。所以我们选择采用定期删除，。</li>
+<li>定期删除是时间由我们定，我们可以每隔100ms进行检查，但还是不能检查所有的缓存，Redis还是会卡死，只能随机地去检查一部分缓存，但是这样会有一些缓存无法在规定时间内删除。这时惰性删除就派上用场了。</li>
+</ul>
+<h3 id="惰性删除"><a href="#惰性删除" class="headerlink" title="惰性删除"></a>惰性删除</h3><p>举个简单的例子：中学的时候，平时作业太多，根本做不完，老师说下节课要讲这个卷子，你们都做完了吧？其实有很多人没做完，所以需要在下节课之前赶紧补上。  </p>
+<p>惰性删除也是这个道理，我们的这个值按理说应该没了，但是它还在，当你要获取这个key的时候，发现这个key应该过期了，赶紧删了，然后返回一个’没有这个值，已经过期了!’。  </p>
+<p>现在我们有了定期删除 + 惰性删除的过期策略，就可以高枕无忧了吗？并不是这样的，如果这个key一直不访问，那么它会一直滞留，也是不合理的，这就需要我们的内存淘汰机制了。</p>
+<h3 id="Redis内存淘汰策略"><a href="#Redis内存淘汰策略" class="headerlink" title="Redis内存淘汰策略"></a>Redis内存淘汰策略</h3><p><img src="/2019/05/06/Redis-内容体系/Redis内存淘汰策略.png" alt="Redis内存淘汰策略"></p>
+<p>在Redis.conf中我们可以进行配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># maxmemory-policy allkeys-lru</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+          
+
+
+  <section class="meta" id="footer-meta">
+    <hr>
+    <div class="new-meta-box">
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-05-06T09:32:34+08:00">
+  <a class="notlink">
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>last updated at May 6, 2019</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Redis/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Redis</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/05/06/Redis-内容体系/&title=Redis 内容体系 | Xin Blog&summary=
+REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。Redis是一个开源的使用ANSI 、C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。
+">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2019/05/06/Redis-内容体系/&title=Redis 内容体系 | Xin Blog&summary=
+REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。Redis是一个开源的使用ANSI 、C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。
+">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/05/06/Redis-内容体系/&title=Redis 内容体系 | Xin Blog&summary=
+REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。Redis是一个开源的使用ANSI 、C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。
+">
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;Previous</h6>
+                            <h4>
+                                <a href="/2019/05/06/序列化和反序列化的底层实现原理/" rel="prev" title="序列化和反序列化的底层实现原理">
+                                  
+                                      序列化和反序列化的底层实现原理
+                                  
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/java/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>java</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>Next&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/2019/04/29/Spring-Boot-二/" rel="prev" title="Spring Boot(二)">
+                                    
+                                        Spring Boot(二)
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Spring-Boot/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Spring Boot</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Redis 内容体系',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class="l_side">
+  
+    
+    
+      
+        
+          
+          
+            <section class="widget author">
+  <div class="content pure">
+    
+      <div class="avatar">
+        <img class="avatar" src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@master/avatar/avatar.png">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml" class="social fas fa-rss flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:me@xaoxuu.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/xaoxuu" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=63035382" class="social fas fa-headphones-alt flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget toc-wrapper">
+    
+<header class="pure">
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;TOC</div>
+  
+    <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class="content pure">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#速度快"><span class="toc-text">速度快</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#丰富的数据类型"><span class="toc-text">丰富的数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原子性，支持事务"><span class="toc-text">原子性，支持事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#丰富的特性"><span class="toc-text">丰富的特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis和Memcache对比"><span class="toc-text">Redis和Memcache对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#存储方式"><span class="toc-text">存储方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据支持类型"><span class="toc-text">数据支持类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用的底层模型"><span class="toc-text">使用的底层模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储值大小"><span class="toc-text">存储值大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis存在的问题及解决方案"><span class="toc-text">Redis存在的问题及解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存数据库的双写一致性的问题"><span class="toc-text">缓存数据库的双写一致性的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存雪崩问题"><span class="toc-text">缓存雪崩问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存穿透问题"><span class="toc-text">缓存穿透问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存的并发竞争问题"><span class="toc-text">缓存的并发竞争问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis的过期策略"><span class="toc-text">Redis的过期策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定期删除"><span class="toc-text">定期删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#惰性删除"><span class="toc-text">惰性删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis内存淘汰策略"><span class="toc-text">Redis内存淘汰策略</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            <section class="widget grid">
+  
+<header class="pure">
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class="content pure">
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/" id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          近期文章
+        </a></li>
+      
+        <li><a class="flat-box" title="/blog/archives/" href="/blog/archives/" rel="nofollow" id="blogarchives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/projects/" href="/projects/" id="projects">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          开源项目
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/" rel="nofollow" id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="https://xaoxuu.com/wiki/material-x/" href="https://xaoxuu.com/wiki/material-x/" rel="nofollow" id="https:xaoxuu.comwikimaterial-x">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          主题文档
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/" rel="nofollow" id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget category">
+    
+<header class="pure">
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/blog/categories/" title="blog/categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class="content pure">
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Java-Web/" href="/categories/Java-Web/"><div class="name">Java Web</div><div class="badge">(5)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(14)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Mac系列/" href="/categories/Mac系列/"><div class="name">Mac系列</div><div class="badge">(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(2)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Spring系列/" href="/categories/Spring系列/"><div class="name">Spring系列</div><div class="badge">(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+  <section class="widget tagcloud">
+    
+<header class="pure">
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
+  
+    <a class="rightBtn" rel="nofollow" href="/blog/tags/" title="blog/tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class="content pure">
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            
+
+
+  <section class="widget music">
+    
+<header class="pure">
+  <div><i class="fas fa-compact-disc fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;最近在听</div>
+  
+    <a class="rightBtn" rel="external nofollow noopener noreferrer" target="_blank" href="https://music.163.com/#/user/home?id=63035382" title="https://music.163.com/#/user/home?id=63035382">
+    <i class="far fa-heart fa-fw"></i></a>
+  
+</header>
+
+    <div class="content pure">
+      
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+  <div class="aplayer" data-theme="#1BCDFC" data-mode="circulation" data-server="netease" data-type="playlist" data-id="2615636388" data-volume="0.7">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+
+
+    </div>
+  </section>
+
+
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml" class="social fas fa-rss flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:me@xaoxuu.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/xaoxuu" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=63035382" class="social fas fa-headphones-alt flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+</div>
+  <div>
+    Use
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
+    as theme
+    
+      , 
+      total visits
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      times
+    
+    . 
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.4.19/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.4.19/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "Copied";
+  let COPY_FAILURE = "Copy failed";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

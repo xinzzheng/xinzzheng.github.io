@@ -264,6 +264,229 @@
       
         
   <h2 class="title">
+    <a href="/2019/05/06/JVM-知识图谱/">
+      JVM 知识图谱
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-06</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Java系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Java系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="JVM的内存结构"><a href="#JVM的内存结构" class="headerlink" title="JVM的内存结构"></a>JVM的内存结构</h2><blockquote>
+<p>堆（Heap）：线程共享。所有的对象实例以及数组都要在堆上分配。回收器主要管理的对象。  </p>
+</blockquote>
+<blockquote>
+<p>方法区（Method Area）：线程共享。存储类信息、常量、静态变量、即时编译器编译后的代码。</p>
+</blockquote>
+<blockquote>
+<p>方法栈（JVM Stack）：线程私有。存储局部变量表、操作栈、动态链接、方法出口，对象指针。</p>
+<p>本地方法栈（Native Method Stack）：线程私有。为虚拟机使用到的Native 方法服务。如Java使用c或者c++编写的接口服务时，代码在此区运行。</p>
+<p>程序计数器（Program Counter Register）：线程私有。有些文章也翻译成PC寄存器（PC Register），同一个东西。它可以看作是当前线程所执行的字节码的行号指示器。指向下一条要执行的指令。</p>
+</blockquote>
+      
+        <div class="readmore">
+          <a href="/2019/05/06/JVM-知识图谱/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/05/06/序列化和反序列化的底层实现原理/">
+      序列化和反序列化的底层实现原理
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-05-06</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Java系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Java系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <blockquote>
+<p>序列化：对象序列化的最主要的用处就是在传递和保存对象的时候，保证对象的完整性和可传递性。序列化是把对象转换成有序字节流，以便在网络上传输或者保存在本地文件中。序列化后的字节流保存了Java对象的状态以及相关的描述信息。序列化机制的核心作用就是对象状态的保存与重建。  </p>
+</blockquote>
+<blockquote>
+<p>反序列化：客户端从文件中或网络上获得序列化后的对象字节流后，根据字节流中所保存的对象状态及描述信息，通过反序列化重建对象。</p>
+</blockquote>
+      
+        <div class="readmore">
+          <a href="/2019/05/06/序列化和反序列化的底层实现原理/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
     <a href="/2019/04/09/Spring简介以及常用配置/">
       Redis-配置与启动
     </a>
@@ -1109,214 +1332,6 @@
           </div>
         
       
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/04/02/MD5Utils/">
-      MD5Utils
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://yoursite.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>Xin Zheng</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-04-02</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/Java系列/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Java系列</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="MD5工具类"><a href="#MD5工具类" class="headerlink" title="MD5工具类"></a>MD5工具类</h2><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>MD5(Message Digest Algorithm)加密算法是不对称的加密算法，因为其实不可逆的，实际上其不能算作加密算法，因为其不可解密。其实现原理是基于Hash算法(简称散列函数)。</p>
-      
-        <div class="readmore">
-          <a href="/2019/04/02/MD5Utils/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class="post-wrapper">
-            <article class="post reveal ">
-  
-
-
-  <section class="meta">
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/04/01/Java类排序（泛型集合排序）/">
-      Java 类排序（泛型集合排序）
-    </a>
-  </h2>
-
-
-      
-      <div class="new-meta-box">
-        
-          
-        
-          
-            
-  <div class="new-meta-item author">
-    <a href="http://yoursite.com" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>Xin Zheng</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class="notlink">
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-04-01</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class="new-meta-item category">
-    <a href="/categories/Java系列/" rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Java系列</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h2 id="Java-类排序（泛型集合排序）"><a href="#Java-类排序（泛型集合排序）" class="headerlink" title="Java 类排序（泛型集合排序）"></a>Java 类排序（泛型集合排序）</h2>
-      
-        <div class="readmore">
-          <a href="/2019/04/01/Java类排序（泛型集合排序）/" class="flat-box">
-            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
-            Read More
-          </a>
-        </div>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/java/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>java</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1485,7 +1500,7 @@
         
           <li><a class="flat-box" title="/categories/Java-Web/" href="/categories/Java-Web/"><div class="name">Java Web</div><div class="badge">(5)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(12)</div></a></li>
+          <li><a class="flat-box" title="/categories/Java系列/" href="/categories/Java系列/"><div class="name">Java系列</div><div class="badge">(14)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Linux/" href="/categories/Linux/"><div class="name">Linux</div><div class="badge">(1)</div></a></li>
         
@@ -1493,7 +1508,7 @@
         
           <li><a class="flat-box" title="/categories/Oracle-Tools/" href="/categories/Oracle-Tools/"><div class="name">Oracle Tools</div><div class="badge">(3)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/Redis系列/" href="/categories/Redis系列/"><div class="name">Redis系列</div><div class="badge">(2)</div></a></li>
         
           <li><a class="flat-box" title="/categories/Spring-Boot系列/" href="/categories/Spring-Boot系列/"><div class="name">Spring Boot系列</div><div class="badge">(2)</div></a></li>
         
@@ -1522,7 +1537,7 @@
 </header>
 
     <div class="content pure">
-      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 14px; color: #999">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
+      <a href="/tags/Git/" style="font-size: 14px; color: #999">Git</a> <a href="/tags/Linux/" style="font-size: 14px; color: #999">Linux</a> <a href="/tags/Mac/" style="font-size: 20.67px; color: #6c6c6c">Mac</a> <a href="/tags/Redis/" style="font-size: 17.33px; color: #828282">Redis</a> <a href="/tags/Spring-Boot/" style="font-size: 17.33px; color: #828282">Spring Boot</a> <a href="/tags/java/" style="font-size: 24px; color: #555">java</a> <a href="/tags/java-web/" style="font-size: 20.67px; color: #6c6c6c">java web</a> <a href="/tags/jsp/" style="font-size: 14px; color: #999">jsp</a> <a href="/tags/linux/" style="font-size: 17.33px; color: #828282">linux</a> <a href="/tags/spring/" style="font-size: 14px; color: #999">spring</a>
     </div>
   </section>
 
