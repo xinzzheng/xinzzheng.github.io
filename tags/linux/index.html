@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Tag: Linux | Xin Blog</title>
+  <title>Tag: linux | Xin Blog</title>
   
   
   <meta name="description" content="Practice makes perfect.">
@@ -45,55 +45,7 @@
 <body>
   
   
-  <div class="cover-wrapper">
-    <cover class="cover  half">
-      
-        
-  <h1 class="title">Material X</h1>
-
-
-  <div class="m_search">
-    <form name="searchform" class="form u-search-form">
-      <input type="text" class="input u-search-input" placeholder>
-      <i class="icon fas fa-search fa-fw"></i>
-    </form>
-  </div>
-
-<div class="menu navgation">
-  <ul class="h-list">
-    
-      
-        <li>
-          <a class="nav home" href="/" id="home">
-            <i class="fas fa-rss fa-fw"></i>&nbsp;博文
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/projects/" id="projects">
-            <i class="fas fa-code-branch fa-fw"></i>&nbsp;项目
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/friends/" rel="nofollow" id="friends">
-            <i class="fas fa-link fa-fw"></i>&nbsp;友链
-          </a>
-        </li>
-      
-        <li>
-          <a class="nav home" href="/about/" rel="nofollow" id="about">
-            <i class="fas fa-info-circle fa-fw"></i>&nbsp;关于
-          </a>
-        </li>
-      
-    
-  </ul>
-</div>
-
-      
-    </cover>
-    <header class="l_header pure">
+  <header class="l_header pure">
   <div id="loading-bar-wrapper">
     <div id="loading-bar" class="pure"></div>
   </div>
@@ -110,26 +62,20 @@
           
   					
   						<li>
-								<a class="nav flat-box" href="/" id="home">
-									<i class="fas fa-grin fa-fw"></i>&nbsp;示例
+								<a class="nav flat-box" href="/" rel="nofollow" id="home">
+									<i class="fas fa-rss fa-fw"></i>&nbsp;博文
 								</a>
 							</li>
       			
   						<li>
-								<a class="nav flat-box" href="/blog/categories/" rel="nofollow" id="blogcategories">
-									<i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+								<a class="nav flat-box" href="/projects/" rel="nofollow" id="projects">
+									<i class="fas fa-code-branch fa-fw"></i>&nbsp;项目
 								</a>
 							</li>
       			
   						<li>
-								<a class="nav flat-box" href="/blog/tags/" rel="nofollow" id="blogtags">
-									<i class="fas fa-hashtag fa-fw"></i>&nbsp;标签
-								</a>
-							</li>
-      			
-  						<li>
-								<a class="nav flat-box" href="/blog/archives/" rel="nofollow" id="blogarchives">
-									<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+								<a class="nav flat-box" href="/about/" rel="nofollow" id="about">
+									<i class="fas fa-info-circle fa-fw"></i>&nbsp;关于
 								</a>
 							</li>
       			
@@ -177,7 +123,7 @@
             </li>
           
             <li>
-							<a class="nav flat-box" href="/blog/archives/" rel="nofollow" id="blogarchives">
+							<a class="nav flat-box" href="/archives/" rel="nofollow" id="archives">
 								<i class="fas fa-archive fa-fw"></i>&nbsp;文章归档
 							</a>
             </li>
@@ -202,7 +148,7 @@
           
             <li>
 							<a class="nav flat-box" href="/about/" rel="nofollow" id="about">
-								<i class="fas fa-info-circle fa-fw"></i>&nbsp;关于小站
+								<i class="fas fa-info-circle fa-fw"></i>&nbsp;个人简历
 							</a>
             </li>
           
@@ -213,10 +159,9 @@
 	</aside>
 <script>setLoadingBarProgress(40);</script>
 
-  </div>
 
 
-  <div class="l_body">
+  <div class="l_body nocover">
     <div class='body-wrapper'>
       
 <div class="l_main">
@@ -226,6 +171,8 @@
   <section class="post-list">
     
       
+        
+          
         
           
         
@@ -246,8 +193,114 @@
       
         
   <h2 class="title">
-    <a href="/2019/04/03/ADE-Commands/">
-      ADE Commands
+    <a href="/2019/04/26/解决Linux-macOS下zip文件解压中文乱码/">
+      解决Linux/macOS下zip文件解压中文乱码
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Xin Zheng</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-26</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class="new-meta-item category">
+    <a href="/categories/Mac系列/" rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Mac系列</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>很多网站下载的zip文件都是在Windows下打包的，这就为乱码的出现埋下了铺垫。这个问题表面上是由于Windows(中文系统)下使用cp936也就是GBK编码，而Linux以及macOS下使用UTF-8编码，但是追根究底还是因为zip格式在设计之初就没有为文件编码预留存储数据的位置，导致解压程序在解压时只能依照系统编码进行解压，这种情况下一旦跨平台解压就可能导致中文乱码。</p>
+      
+        <div class="readmore">
+          <a href="/2019/04/26/解决Linux-macOS下zip文件解压中文乱码/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            Read More
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/Mac/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Mac</a>
+        
+          <a href="/tags/linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>linux</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/04/03/Linux-Command-速查/">
+      Linux Command 速查
     </a>
   </h2>
 
@@ -285,9 +338,9 @@
             
   
   <div class="new-meta-item category">
-    <a href="/categories/Oracle-Tools/" rel="nofollow">
+    <a href="/categories/Linux/" rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Oracle Tools</p>
+      <p>Linux</p>
     </a>
   </div>
 
@@ -314,10 +367,10 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      <h4 id="常用的ADE-Commands"><a href="#常用的ADE-Commands" class="headerlink" title="常用的ADE Commands:"></a>常用的ADE Commands:</h4>
+      <h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3>
       
         <div class="readmore">
-          <a href="/2019/04/03/ADE-Commands/" class="flat-box">
+          <a href="/2019/04/03/Linux-Command-速查/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             Read More
           </a>
@@ -327,7 +380,7 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>Linux</a>
+          <a href="/tags/linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>linux</a>
         
       </div>
     
@@ -376,12 +429,12 @@
           
         
           
-            <a href="mailto:me@xaoxuu.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            <a href="mailto:371635013@qq.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
             </a>
           
         
           
-            <a href="https://github.com/xaoxuu" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+            <a href="https://github.com/xinzzheng" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
             </a>
           
         
@@ -409,75 +462,13 @@
         
           
           
-            <section class="widget grid">
-  
-<header class="pure">
-  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
-  
-</header>
-
-  <div class="content pure">
-    <ul class="grid navgation">
-      
-        <li><a class="flat-box" title="/" href="/" id="home">
-          
-            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
-          
-          近期文章
-        </a></li>
-      
-        <li><a class="flat-box" title="/blog/archives/" href="/blog/archives/" rel="nofollow" id="blogarchives">
-          
-            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
-          
-          文章归档
-        </a></li>
-      
-        <li><a class="flat-box" title="/projects/" href="/projects/" id="projects">
-          
-            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
-          
-          开源项目
-        </a></li>
-      
-        <li><a class="flat-box" title="/friends/" href="/friends/" rel="nofollow" id="friends">
-          
-            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
-          
-          我的友链
-        </a></li>
-      
-        <li><a class="flat-box" title="https://xaoxuu.com/wiki/material-x/" href="https://xaoxuu.com/wiki/material-x/" rel="nofollow" id="https:xaoxuu.comwikimaterial-x">
-          
-            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
-          
-          主题文档
-        </a></li>
-      
-        <li><a class="flat-box" title="/about/" href="/about/" rel="nofollow" id="about">
-          
-            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
-          
-          关于小站
-        </a></li>
-      
-    </ul>
-  </div>
-</section>
-
-          
-        
-      
-        
-          
-          
             
   <section class="widget category">
     
 <header class="pure">
   <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Categories</div>
   
-    <a class="rightBtn" rel="nofollow" href="/blog/categories/" title="blog/categories/">
+    <a class="rightBtn" rel="nofollow" href="/categories/" title="categories/">
     <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
   
 </header>
@@ -518,7 +509,7 @@
 <header class="pure">
   <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Hot Tags</div>
   
-    <a class="rightBtn" rel="nofollow" href="/blog/tags/" title="blog/tags/">
+    <a class="rightBtn" rel="nofollow" href="/tags/" title="tags/">
     <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
   
 </header>
@@ -580,12 +571,12 @@
         
       
         
-          <a href="mailto:me@xaoxuu.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          <a href="mailto:371635013@qq.com" class="social fas fa-envelope flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
           </a>
         
       
         
-          <a href="https://github.com/xaoxuu" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
+          <a href="https://github.com/xinzzheng" class="social fab fa-github flat-btn" target="_blank" rel="external nofollow noopener noreferrer">
           </a>
         
       
@@ -702,103 +693,6 @@
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {
         target: function(trigger) {
-          return trigger.nextElementSibling;
-        }
-      });
-
-      clipboard.on('success', function(e) {
-        //您可以加入成功提示
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-        success_prompt(COPY_SUCCESS);
-        e.clearSelection();
-      });
-      clipboard.on('error', function(e) {
-        //您可以加入失败提示
-        console.error('Action:', e.action);
-        console.error('Trigger:', e.trigger);
-        fail_prompt(COPY_FAILURE);
-      });
-    }
-    initCopyCode();
-
-  }(window, document);
-
-  /**
-   * 弹出式提示框，默认1.5秒自动消失
-   * @param message 提示信息
-   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
-   * @param time 消失时间
-   */
-  var prompt = function (message, style, time)
-  {
-      style = (style === undefined) ? 'alert-success' : style;
-      time = (time === undefined) ? 1500 : time*1000;
-      $('<div>')
-          .appendTo('body')
-          .addClass('alert ' + style)
-          .html(message)
-          .show()
-          .delay(time)
-          .fadeOut();
-  };
-
-  // 成功提示
-  var success_prompt = function(message, time)
-  {
-      prompt(message, 'alert-success', time);
-  };
-
-  // 失败提示
-  var fail_prompt = function(message, time)
-  {
-      prompt(message, 'alert-danger', time);
-  };
-
-  // 提醒
-  var warning_prompt = function(message, time)
-  {
-      prompt(message, 'alert-warning', time);
-  };
-
-  // 信息提示
-  var info_prompt = function(message, time)
-  {
-      prompt(message, 'alert-info', time);
-  };
-
-</script>
-
-
-<!-- fancybox -->
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script>
-  let LAZY_LOAD_IMAGE = "";
-  $(".article-entry").find("fancybox").find("img").each(function () {
-      var element = document.createElement("a");
-      $(element).attr("data-fancybox", "gallery");
-      $(element).attr("href", $(this).attr("src"));
-      /* 图片采用懒加载处理时,
-       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
-       * 那么此处将原本的属性名src替换为对应属性名data-original,
-       * 修改如下
-       */
-       if (LAZY_LOAD_IMAGE) {
-         $(element).attr("href", $(this).attr("data-original"));
-       }
-      $(this).wrap(element);
-  });
-</script>
-
-
-
-
-
-  <script>setLoadingBarProgress(100);</script>
-</body>
-</html>
-ger) {
           return trigger.nextElementSibling;
         }
       });
