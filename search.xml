@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>JVM (二) -- GC</title>
+      <link href="/2019/05/12/JVM%20(%E4%BA%8C)%20--%20GC/"/>
+      <url>/2019/05/12/JVM%20(%E4%BA%8C)%20--%20GC/</url>
+      
+        <content type="html"><![CDATA[<h2 id="JVM-二-–-GC"><a href="#JVM-二-–-GC" class="headerlink" title="JVM (二) – GC"></a>JVM (二) – GC</h2><blockquote><p>Q:  JVM 中如何判断一个对象的生死状态？</p><p>Q: 对象除了生死之外，还有其他状态吗?</p><p>Q: 对象真正的死亡，难道只经历一次简单的判定？</p><p>Q: 如何在垂死的边缘“拯救”一个将死对象？</p></blockquote><a id="more"></a><h4 id="如何判断"><a href="#如何判断" class="headerlink" title="如何判断"></a>如何判断</h4><h5 id="1-引用计数器算法"><a href="#1-引用计数器算法" class="headerlink" title="1. 引用计数器算法"></a>1. 引用计数器算法</h5><ul><li>给每一个对象设置一个引用计数器，每当有一个地方引用这个对象的时候，计数器就加1，与之相反，每当引用失效的时候就减1。<ul><li>实现简单、性能高。</li><li>增减处理频繁消耗cpu计算、计数器占用很多位浪费空间、最重要的缺点是无法解决循环引用的问题。</li></ul></li></ul><h5 id="2-可达性分析算法"><a href="#2-可达性分析算法" class="headerlink" title="2. 可达性分析算法"></a>2. 可达性分析算法</h5><ul><li>通过一些列的“GC Roots”对象作为起始点，从这些对象开始往下搜索，搜索所经过的路径称之为“引用链”。</li><li>当一个对象到GC Roots没有任何引用链相连的时候，证明此对象是可以被回收的。<ul><li>可作为GC Roots对象的列表：<ul><li>Java虚拟机栈中的引用对象。</li><li>本地方法栈中JNI（既一般说的Native方法）引用的对象。</li><li>方法区中类静态常量的引用对象。</li><li>方法区中常量的引用对象。</li></ul></li></ul></li></ul><h4 id="对象生死与引用的关系"><a href="#对象生死与引用的关系" class="headerlink" title="对象生死与引用的关系"></a>对象生死与引用的关系</h4><ul><li>强引用（Strong Reference）<ul><li>普遍存在 “Object obj = new Object()” 这类引用，只要强引用还在，垃圾收集器永远不会回收掉被引用的对象。</li></ul></li><li>软引用（Soft Reference）<ul><li>让对象豁免一些垃圾收集，只有当jvm认为内存不足时，才会去试图回收软引用指向的对象。jvm会确保在抛出OutOfMemoryError之前，清理软引用指向的对象。</li></ul></li><li>弱引用（Weak Reference）<ul><li>非必需对象，但它的强度比软引用更弱，被弱引用关联的对象只能生存到下一次垃圾收集发生之前。</li></ul></li><li>虚引用（Phantom Reference）<ul><li>也称为幽灵引用或幻影引用，是最弱的一种引用关系，无法通过虚引用来获取一个对象实例，为对象设置虚引用的目的只有一个，就是当着个对象被收集器回收时收到一条系统通知。</li></ul></li></ul><font color="red">  对象不是非生即死的，当空间还足够时，还可以保留这些对象，如果空间不足时，再抛弃这些对象。很多缓存功能的实现也符合这样的场景。</font> <h4 id="死亡标记与拯救"><a href="#死亡标记与拯救" class="headerlink" title="死亡标记与拯救"></a>死亡标记与拯救</h4><p>​    在可达性算法中不可达的对象，并不是“非死不可”的，要真正宣告一个对象死亡，至少要经历两次标记的过程。</p><p>​    如果对象在进行可达性分析之后，没有与GC Roots相连接的引用链，它会被第一次标记，并进行筛选，筛选的条件是此对象是否有必要执行finalize()方法。</p><h5 id="执行finalize-方法的两个条件："><a href="#执行finalize-方法的两个条件：" class="headerlink" title="执行finalize()方法的两个条件："></a>执行finalize()方法的两个条件：</h5><ol><li><p>重写了finalize()方法。</p></li><li><p>finalize()方法之前没被调用过，因为对象的finalize()方法只能被执行一次。</p></li></ol><p>如果满足以上两个条件，这个对象将会放置在F-Queue的队列之中，并在稍后由一个虚拟机自建的、低优先级Finalizer线程来执行它。</p><h5 id="对象的“自我拯救”"><a href="#对象的“自我拯救”" class="headerlink" title="对象的“自我拯救”"></a>对象的“自我拯救”</h5><p>​    finalize()方法是对象脱离死亡命运最后的机会，如果对象在finalize()方法中重新与引用链上的任何一个对象建立关联即可，比如把自己（this关键字）赋值给某个类变量或对象的成员变量。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>“ArrayList（二）”</title>
+      <link href="/2019/05/07/ArrayList%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+      <url>/2019/05/07/ArrayList%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<p>ArrayList（二）</p><blockquote><p>ArrayList是线程不安全的</p></blockquote><a id="more"></a><h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><p><code>java.util.ConcurrentModificationException</code></p><h4 id="不安全原因"><a href="#不安全原因" class="headerlink" title="不安全原因"></a>不安全原因</h4><ul><li>add方法没有加锁 -&gt;并发争夺修改导致。</li></ul><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul><li>Vector</li><li>Collections.synchronizedList（new ArrayList&lt;&gt;()）;  –&gt; 同步锁</li><li>new CopyOnWriteArrayList&lt;&gt;();<ul><li>读写分离的思想；<ul><li>加锁 -&gt;copy -&gt; 扩容 + 1 -&gt; 传递引用</li></ul></li></ul></li><li>new ConcurrentHashMap&lt;&gt;();</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>“设计模式-适配器模式”</title>
       <link href="/2019/05/07/%E2%80%9C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E2%80%9D/"/>
       <url>/2019/05/07/%E2%80%9C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%E2%80%9D/</url>
@@ -34,6 +84,31 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MySql索引</title>
+      <link href="/2019/05/06/MySql%E7%B4%A2%E5%BC%95/"/>
+      <url>/2019/05/06/MySql%E7%B4%A2%E5%BC%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="MySql索引"><a href="#MySql索引" class="headerlink" title="MySql索引"></a>MySql索引</h2><blockquote><p><strong>MySql存储引擎</strong></p><ul><li>MyISAM： 拥有较高的插入，查询速度，但不支持事务</li><li>InnoDB ：5.5版本后Mysql的默认数据库，事务型数据库的首选引擎，支持ACID事务，支持行级锁定。</li></ul></blockquote><a id="more"></a><blockquote><p>MySQL目前有四种索引：</p><ul><li>B-Tree索引最常见的索引类型，大部分引擎都支持B树索引。</li><li>HASH索引只有Memory引擎支持，使用场景简单。</li><li>R-Tree索引空间索引是MyISAM的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少。</li><li>Full-text全文索引也是MyISAM的一个特殊索引类型，主要用于全文索引。</li></ul></blockquote><hr><!-- more --><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol><li>虽然索引大大提高了查询速度，同时却会降低更新表的速度，如对表进行insert、update和delete。因为更新表时，不仅要保存数据，还要保存一下索引文件。</li><li>建立索引会占用磁盘空间的索引文件。一般情况这个问题不太严重，但如果你在一个大表上创建了多种组合索引，索引文件的会增长很快。</li><li>索引只是提高效率的一个因素，如果有大数据量的表，就需要花时间研究建立最优秀的索引，或优化查询语句。</li></ol><h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><blockquote><p>从算法逻辑上讲，二叉查找树的查找速度和比较次数都是最小的，但是从Mysql的角度讲，我们不得不考虑一个现实问题：磁盘IO。</p><p>查找都是索引操作，一般来说索引非常大，尤其是关系型数据库这种，当数据量比较大的时候，索引的大小有可能几个G甚至更多，数据量大的索引能达到亿级别，所以为了减少内存的占用，数据库索引是存储在外部磁盘上的。</p><p>当我们利用索引查询的时候，不可能把整个索引全部加载到内存，只能逐一加载每个磁盘页，磁盘页对应索引树的节点。</p></blockquote><ul><li>非叶子节点不存储data，只存储key，可以增大度</li><li>叶子节点不存储指针</li><li>顺序访问指针，提高区间访问的性能</li><li>优点<ul><li>一般使用磁盘I/O次数评价索引结构的优劣</li><li>预读：磁盘一般会顺序向后读取一定长度的数据(页的整数倍)放入内存</li><li>局部性原理：当一个数据被用到时，其附近的数据也通常会马上被使用</li><li>B+Tree节点的大小设为等于一个页，每次新建节点直接申请一个页的空间，这样就保证一个节点物理上也存储在一个页里，就实现了一个节点的载入只需一次I/O</li><li>B+Tree的度d一般会超过100，因此h非常小(一般为3到5之间)</li><li>【最佳实践】使用自增的主键<ul><li>a.自增型主键以利于插入性能的提高；</li><li>b.自增型主键设计(int,bigint)可以降低二级索引的空间，提升二级索引的内存命中率；</li><li>c.自增型的主键可以减小page的碎片，提升空间和内存的使用。</li></ul></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySql系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySql </tag>
             
         </tags>
       
@@ -540,6 +615,31 @@
     
     
     <entry>
+      <title> CAS（compare and swap）</title>
+      <link href="/2019/04/02/CAS%EF%BC%88compare%20and%20swap%EF%BC%89/"/>
+      <url>/2019/04/02/CAS%EF%BC%88compare%20and%20swap%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="CAS（compare-and-swap）"><a href="#CAS（compare-and-swap）" class="headerlink" title="CAS（compare and swap）"></a>CAS（compare and swap）</h2><blockquote><p>CPU并发原语。原语的执行是连续的，不允许中断，是线程安全的</p><p>比较当前工作内存的值与主内存的值是否一致，如果相同则执行规定操作，否则继续比较直到主内存和工作内存中的值一支为止。</p></blockquote><a id="more"></a><h4 id="AtomicInteger"><a href="#AtomicInteger" class="headerlink" title="AtomicInteger"></a>AtomicInteger</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AtomicInteger atomicInteger = <span class="keyword">new</span> AtomicInteger(initialValue:<span class="number">5</span>); <span class="comment">//主物理内存</span></span><br><span class="line"><span class="comment">// 先判断ecpected 与 初始值是否相同</span></span><br><span class="line"><span class="comment">// 相同 更新操作 返回true</span></span><br><span class="line"><span class="comment">// 不相同 更新失败，放弃操作，读取最新值，直到操作成功；</span></span><br><span class="line">atomicInteger.compareAndSet(expect：<span class="number">5</span>，update:<span class="number">2019</span>);<span class="comment">//</span></span><br></pre></td></tr></table></figure><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(<span class="keyword">int</span> expect, <span class="keyword">int</span> update)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="keyword">this</span>, valueOffset, expect, update);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><p>自旋锁 do-while循环比较</p></li><li><p>unsafe类</p><ul><li><p>JVM中 rt.jar-&gt; sun.misc.Unsafe 需要通过本地（native）方法访问，像C指针直接操作内存</p></li><li><p>valueOffest 内存中偏移地址</p></li></ul></li></ul><h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul><li>不加锁，并发性加强，可以保证一致性，但是循环比较时间长，如果匹配失败，会一直尝试，长时间不成功，给CPU带来了很大的开销。</li><li>只能保证一个共享变量的操作。加锁可以保证多个变量的操作。</li><li>ABA问题。</li></ul><h4 id="ABA问题"><a href="#ABA问题" class="headerlink" title="ABA问题"></a>ABA问题</h4><p>复制和比较之间被其他线程修改，但是最终的值没有改变。 ABBBBA！</p><h5 id="解决ABA问题"><a href="#解决ABA问题" class="headerlink" title="解决ABA问题"></a>解决ABA问题</h5><ul><li><p>原子引用 + 版本号</p><ul><li><p>Class AtomicReference <v></v></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AtomicReference&lt;User&gt; atomicReference = <span class="keyword">new</span> AtomicReference();</span><br><span class="line">User user1 = <span class="keyword">new</span> User(<span class="string">"1"</span>);</span><br><span class="line">User user2 = <span class="keyword">new</span> User(<span class="string">"2"</span>);</span><br><span class="line">atomicReference.set(user1);</span><br><span class="line">atomicReference.compareAndSet(user1,user2);</span><br></pre></td></tr></table></figure></li></ul></li></ul><h4 id="原子引用更新"><a href="#原子引用更新" class="headerlink" title="原子引用更新"></a>原子引用更新</h4><ul><li><p>AtomicStampedReference</p><p><code>stamp = atomicStampedReference.getStamp();</code></p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title> Java 集合 - Collection</title>
       <link href="/2019/04/02/Java-%E5%AE%B9%E5%99%A8/"/>
       <url>/2019/04/02/Java-%E5%AE%B9%E5%99%A8/</url>
@@ -795,6 +895,31 @@
       <url>/2019/04/01/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F/</url>
       
         <content type="html"><![CDATA[<h3 id="Java程序初始化的顺序是怎么样的"><a href="#Java程序初始化的顺序是怎么样的" class="headerlink" title="Java程序初始化的顺序是怎么样的"></a>Java程序初始化的顺序是怎么样的</h3><p>　　在 Java 语言中，当实例化对象时，对象所在类的所有成员变量首先要进行初始化，只有当所有类成员完成初始化后，才会调用对象所在类的构造函数创建象。<br>　　<br>　　<a id="more"></a></p><h4 id="初始化一般遵循3个原则："><a href="#初始化一般遵循3个原则：" class="headerlink" title="初始化一般遵循3个原则："></a>初始化一般遵循3个原则：</h4><ul><li>静态对象（变量）优先于非静态对象（变量）初始化，静态对象（变量）只初始化一次，而非静态对象（变量）可能会初始化多次；</li><li>父类优先于子类进行初始化；</li><li>按照成员变量的定义顺序进行初始化。 即使变量定义散布于方法定义之中，它们依然在任何方法（包括构造函数）被调用之前先初始化；</li></ul><h4 id="加载顺序"><a href="#加载顺序" class="headerlink" title="加载顺序"></a>加载顺序</h4><ul><li>父类（静态变量、静态语句块）</li><li>子类（静态变量、静态语句块）</li><li>父类（实例变量、普通语句块）</li><li>父类（构造函数）</li><li>子类（实例变量、普通语句块）</li><li>子类（构造函数）</li></ul><h4 id="实例1"><a href="#实例1" class="headerlink" title="实例1"></a>实例1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1.父类静态代码块</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"Base static block!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 3.父类非静态代码块</span></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"Base block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 4.父类构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Base constructor!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 2.子类静态代码块</span></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Derived static block!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 5.子类非静态代码块</span></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"Derived block!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 6.子类构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Derived</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Derived constructor!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Derived();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Base static block!</span><br><span class="line">Derived static block!</span><br><span class="line">Base block</span><br><span class="line">Base constructor!</span><br><span class="line">Derived block!</span><br><span class="line">Derived constructor!</span><br></pre></td></tr></table></figure><h4 id="实例2"><a href="#实例2" class="headerlink" title="实例2"></a>实例2</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Log</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> staitc String <span class="title">baseFieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.print(<span class="string">"Base normal field"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> staitc String <span class="title">baseStaticFieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.print(<span class="string">"Base static field"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> staitc String <span class="title">fieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.print(<span class="string">"Normal field"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> staitc String <span class="title">staticFieldInit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.print(<span class="string">"Static field"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line"><span class="keyword">static</span> &#123;System.out.println(<span class="string">"Base static block 1"</span>);&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String staticValue=Log.baseStaticFieldInit();</span><br><span class="line"><span class="keyword">static</span> &#123;System.out.println(<span class="string">"Base static block 2"</span>);&#125;</span><br><span class="line">&#123;System.out.println(<span class="string">"Base normal block 1"</span>);&#125;</span><br><span class="line"><span class="keyword">private</span> String value=Log.baseFieldInit();</span><br><span class="line">&#123;System.out.println(<span class="string">"Base normal block 2"</span>);&#125;</span><br><span class="line">Base()&#123;</span><br><span class="line">System.out.println(<span class="string">"Base constructor"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line"><span class="keyword">static</span> &#123;System.out.println(<span class="string">"Static block 1"</span>);&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String staticValue=Log.staticFieldInit();</span><br><span class="line"><span class="keyword">static</span> &#123;System.out.println(<span class="string">"Static block 2"</span>);&#125;</span><br><span class="line">&#123;System.out.println(<span class="string">"Normal block 1"</span>);&#125;</span><br><span class="line"><span class="keyword">private</span> String value=Log.fieldInit();</span><br><span class="line">&#123;System.out.println(<span class="string">"Normal block 2"</span>);&#125;</span><br><span class="line">Derived() &#123;</span><br><span class="line">System.out.println(<span class="string">"Dervied constructor"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Derived d = <span class="keyword">new</span> Dervied();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Base static block 1</span><br><span class="line">Base static field</span><br><span class="line">Base static block 2</span><br><span class="line">Static block 1</span><br><span class="line">Static field</span><br><span class="line">Static block 2</span><br><span class="line">Base normal block 1</span><br><span class="line">Base normal field</span><br><span class="line">Base normal block 2</span><br><span class="line">Base constructor</span><br><span class="line">Normal block 1</span><br><span class="line">Normal field</span><br><span class="line">Normal block 2</span><br><span class="line">Dervied constructor</span><br></pre></td></tr></table></figure><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对象在class文件加载完毕，以及为各成员在方法区开辟好内存空间后，就开始所谓的初始化步骤：  </p><ol><li>基类静态代码块，基类静态成员字段，无优先级，按先后顺序，只有第一次加载类时执行。</li><li>派生类静态代码块，派生类静态成员字段，无优先级，按先后顺序，只有第一次加载类时执行。</li><li>基类普通代码块，基类普通成员字段，无优先级，按先后顺序。</li><li>基类构造函数。</li><li>派生类普通代码块，派生类普通成员字段，无优先级，按先后顺序。</li><li>派生类构造函数。</li></ol><p><strong>1和2的静态过程，只有在类第一次被加载的时候才执行</strong><br>如果创建两个对象：<br>Dervied d1 = new Dervied();<br>Dervied d1 = new Dervied();<br>第二次创建只执行2345.</p><h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p>[<a href="https://www.zhihu.com/question/49196023" target="_blank" rel="noopener">https://www.zhihu.com/question/49196023</a><br>] (<a href="https://www.zhihu.com/question/49196023" target="_blank" rel="noopener">https://www.zhihu.com/question/49196023</a>)<br><a href="https://github.com/frank-lam/fullstack-tutorial/blob/master/notes/JavaArchitecture/01-Java%E5%9F%BA%E7%A1%80.md" target="_blank" rel="noopener">https://github.com/frank-lam/fullstack-tutorial</a>  </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java系列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java 内存模型（JMM）</title>
+      <link href="/2019/04/01/Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%EF%BC%88JMM%EF%BC%89/"/>
+      <url>/2019/04/01/Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%EF%BC%88JMM%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Java-内存模型（JMM）"><a href="#Java-内存模型（JMM）" class="headerlink" title="Java 内存模型（JMM）"></a>Java 内存模型（JMM）</h2><blockquote><p>在并发编程中，多个线程之间采取什么机制进行通信（信息交换），什么机制进行数据的同步？</p></blockquote><a id="more"></a><p>在Java语言中，采用的是<font color="red">共享内存模型</font>来实现多线程之间的信息交换和数据同步的。</p><p>线程之间通过共享程序公共的状态，通过读写内存中公共状态的方式进行隐式的通信。</p><p>同步指的是程序在控制多个线程之间执行程序的相对顺序的机制，在共享内存模型中，同步是显式的，程序员必须显式指定某个方法/代码块需要在多线程之间互斥执行。</p><p>Java虚拟机在执行Java程序的过程中，会把它管理的内存划分为几个不同的数据区域，这些区域都有各自的用途、创建时间、销毁时间。</p><p><img src="/2019/04/01/Java 内存模型（JMM）/Java内存结构.png" alt></p><ol><li><p><strong>程序计数器</strong></p><ul><li><p>保存当前正在执行的程序的内存地址</p></li><li><p>为了线程切换后能恢复到正确的执行位置</p></li><li><font color="red">私有/线程安全</font></li></ul></li><li><p><strong>Java Stack</strong></p><ul><li>每当创建一个线程，JVM就会为该线程创建对应的Java栈</li><li>包含多个栈帧(Stack Frame)，每运行一个方法就创建一个栈帧，每个栈帧会含有一些局部变量、操作栈和方法返回值等信息。</li><li><font color="red">私有/线程安全</font></li><li>StackOverflowError异常:<ul><li>线程请求的栈深度大于虚拟机所允许的深度</li></ul></li><li>OutOfMemoryError异常:<ul><li>如果虚拟机可以动态扩展，如果扩展时无法申请到足够的内存</li><li>在Hot Spot虚拟机中，可以使用-Xss参数来设置栈的大小。栈的大小直接决定了函数调用的可达深度。</li></ul></li></ul></li><li><p><strong>.堆 Heap</strong></p><ul><li>堆是JVM所管理的内存中最大的一块，是被所有Java线程锁共享的，不是线程安全的，在JVM启动时创建。</li><li>Java堆是GC管理的主要区域，从内存回收的角度来看，由于现在GC基本都采用分代收集算法，所以Java堆还可以细分为：新生代和老年代；新生代再细致一点有Eden空间、From Survivor空间、To Survivor空间等。</li></ul></li><li><p><strong>方法区Method Area</strong></p><ul><li>方法区存放了要加载的类的信息（名称、修饰符等）、类中的静态常量、类中定义为final类型的常量、类中的Field信息、类中的方法信息.</li><li>当方法区要使用的内存超过其允许的大小时，会抛出OutOfMemory的错误信息。</li><li>方法区也是堆中的一部分，就是我们通常所说的Java堆中的永久区 Permanet Generation，大小可以通过参数来设置,可以通过-XX:PermSize指定初始值，-XX:MaxPermSize指定最大值。</li></ul></li><li><p><strong>常量池Constant Pool</strong></p><ul><li>常量池中存储了如字符串、final变量值、类名和方法名常量。</li><li>常量池在编译期间就被确定，并保存在已编译的.class文件中。</li><li></li></ul></li><li><p><strong>本地方法栈Native Method Stack</strong></p><ul><li>本地方法栈和Java栈所发挥的作用非常相似，区别:<ul><li>Java栈为JVM执行Java方法服务，</li><li>本地方法栈为JVM执行Native方法服务。</li></ul></li><li>本地方法栈也会抛出StackOverflowError和OutOfMemoryError异常。</li></ul></li></ol><h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><blockquote><p>一个操作不能被打断，要么全部执行完毕，要么不执行。在这点上有点类似于事务操作，要么全部执行成功，要么回退到执行该操作之前的状态。</p></blockquote><h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><blockquote><p>一个线程对共享变量做了修改之后，其他的线程立即能够看到（感知到）该变量这种修改（变化）。</p></blockquote><ul><li><p>volatile的特殊规则保证了volatile变量值修改后的新值立刻同步到主内存，每次使用volatile变量前立即从主内存中刷新，因此volatile保证了多线程之间的操作变量的可见性，而普通变量则不能保证这一点。</p></li><li><p>除了volatile关键字能实现可见性之外，还有synchronized,Lock，final也是可以的。</p></li></ul><h4 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h4><blockquote><p>对于一个线程的代码而言，我们总是以为代码的执行是从前往后的，依次执行的。这么说不能说完全不对，在单线程程序里，确实会这样执行；但是在多线程并发时，程序的执行就有可能出现乱序。用一句话可以总结为：在本线程内观察，操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行语义（WithIn<br>Thread As-if-Serial Semantics）”,后半句是指“指令重排”现象和“工作内存和主内存同步延迟”现象。</p></blockquote><p>Java提供了两个关键字volatile和synchronized来保证多线程之间操作的有序性</p><ul><li>volatile关键字本身通过加入内存屏障来禁止指令的重排序，</li><li>synchronized关键字通过一个变量在同一时间只允许有一个线程对其进行加锁的规则来实现，</li></ul>]]></content>
       
       
       <categories>
